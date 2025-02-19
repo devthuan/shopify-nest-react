@@ -4,14 +4,17 @@ import TopHeader from '~/layouts/components/TopHeader/TopHeader';
 import Header from '~/layouts/components/Header/Header';
 import Footer from '~/layouts/components/Footer/Footer';
 const cx = classNames.bind(styles);
+// eslint-disable-next-line react/prop-types
 const DefaultLayout = ({ children }) => {
     return (
-        <div className={cx('wrapper')}>
-            <TopHeader />
-            <Header />
-            <div className={cx('content')}>{children}</div>
-            <Footer />
-        </div>
+        <>
+                <TopHeader />
+            <div className={cx('wrapper')}>
+                <Header />
+                <div className={cx('content')}>{children}</div>
+                <Footer />
+            </div>
+        </>
     );
 };
 

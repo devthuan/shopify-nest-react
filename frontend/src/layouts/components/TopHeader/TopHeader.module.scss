@@ -7,13 +7,8 @@
 
 .container {
     display: flex;
-    width: 1440px;
+    max-width: 1440px;
     height: 48px;
-    padding: 12px 136px 12px 445px;
-    justify-content: flex-end;
-    align-items: center;
-    flex-shrink: 0;
-    align-items: flex-start;
     gap: 231px;
 }
 
