@@ -7,5 +7,14 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  @Post()
+  createProduct(@Body() createProductDto: CreateProductDto) {
+    return this.productsService.createProduct(createProductDto)
+  }
+
+  @Get()
+  findAll(){
+    return this.productsService.getAllProduct()
+  }
   
 }

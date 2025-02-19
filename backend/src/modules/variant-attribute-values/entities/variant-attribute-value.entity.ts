@@ -3,12 +3,12 @@ import { AttributeValues } from "src/modules/attribute_values/entities/attribute
 import { Variants } from "src/modules/variants/entities/variants.entity";
 import { Entity, ManyToOne } from "typeorm";
 
-@Entity({ name: "variant_attributes" })
-export class VariantAttribute extends BaseEntity{
+@Entity({ name: "variantAttributeValues" })
+export class VariantAttributeValues extends BaseEntity{
 
-    @ManyToOne(() => Variants, variant => variant.variant_attributes)
+    @ManyToOne(() => Variants, variant => variant.variantAttributeValues)
     variant: Variants;
 
-    @ManyToOne(() => AttributeValues, attributeValues => attributeValues.variant_attributes)
+    @ManyToOne(() => AttributeValues, attributeValues => attributeValues.variantAttributeValues)
     attributeValues: AttributeValues;
 }

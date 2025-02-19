@@ -16,7 +16,7 @@ export class Products extends BaseEntity {
     category: Categories;
 
     @OneToMany(() => Variants, variants => variants.product)
-    variants: Variants;
+    variants: Variants[];
 
 
 }

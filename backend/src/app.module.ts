@@ -10,10 +10,10 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { RedisModule } from './modules/redis/redis.module';
 import { VariantsModule } from './modules/variants/variants.module';
 import { AttributeValuesModule } from './modules/attribute_values/attribute_values.module';
-import { VariantAttributesModule } from './modules/variant_attributes/variant_attributes.module';
 import { ProductsModule } from './modules/products/products.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { AttributesModule } from './modules/attributes/attributes.module';
+import { VariantAttributeValuesModule } from './modules/variant-attribute-values/variant-attribute-values.module';
 
 @Module({
   imports: [
@@ -38,10 +38,10 @@ import { AttributesModule } from './modules/attributes/attributes.module';
       RedisModule,
       VariantsModule,
       AttributeValuesModule,
-      VariantAttributesModule,
       ProductsModule,
       CategoriesModule,
       AttributesModule,
+      VariantAttributeValuesModule,
     ],
   controllers: [AppController],
   providers: [AppService],

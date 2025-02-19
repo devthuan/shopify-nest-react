@@ -10,5 +10,6 @@ import { Attributes } from './entities/attribute.entity';
   ],
   controllers: [AttributesController],
   providers: [AttributesService],
+  exports: [AttributesService]
 })
 export class AttributesModule {}

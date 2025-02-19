@@ -12,6 +12,9 @@ export class CommonException {
   static handle(error: Error): void {
     console.log(error)
     if (error instanceof NotFoundException) {
+      if(error.message) {
+          throw new NotFoundException(error.message);
+        }
       throw new NotFoundException('Tài nguyên không tồn tại.');
     } else if (error instanceof BadRequestException) {
         if(error.message) {

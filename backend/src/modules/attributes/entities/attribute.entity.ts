@@ -8,8 +8,8 @@ export class Attributes extends BaseEntity {
     @Column()
     name: string;
 
-    @OneToMany(() => AttributeValues, attribute_value => attribute_value.attribute)
-    attribute_values: AttributeValues;
+    @OneToMany(() => AttributeValues, attribute_value => attribute_value.attributes)
+    attributeValues: AttributeValues;
 
 
 }

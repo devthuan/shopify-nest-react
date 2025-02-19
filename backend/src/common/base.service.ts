@@ -175,6 +175,23 @@ export class BaseService<T extends BaseEntity> {
       CommonException.handle(error)
     }
   }
+  async findOneByName(name: string): Promise<T> {
+  try {
+     const entityName = this.repository.target instanceof Function 
+      ? this.repository.target.name 
+      : this.repository.target;
+
+      const data = await this.repository.createQueryBuilder('entity')
+        .where('entity.name = :name', { name }) // Kiểm tra ID
+        .andWhere('entity.deletedAt IS NULL') // Kiểm tra deletedAt là null
+        .getOne();
+
+    
+      return data;
+    } catch (error) {
+      CommonException.handle(error)
+    }
+  }
 
   async update(id: string, partialEntity: QueryDeepPartialEntity<T>) :Promise<any> {
     try {

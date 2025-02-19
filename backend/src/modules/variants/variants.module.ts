@@ -10,5 +10,6 @@ import { Variants } from './entities/variants.entity';
   ],
   controllers: [VariantsController],
   providers: [VariantsService],
+  exports: [VariantsService]
 })
 export class VariantsModule {}
