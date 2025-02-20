@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
-import { SendIcon } from '~/components/Icons';
+import { CopyRightIcon, FacebookIcon, InstaIcon, LikendinIcon, SendIcon, TwitterIcon } from '~/components/Icons';
+import images from '~/assets/images';
+import Line from '~/components/LIne/Line';
 
 const cx = classNames.bind(styles);
 
@@ -60,15 +62,36 @@ const Footer = () => {
                                 <div className={cx('c-721-child')}>
                                     <div className={cx('text')}>Save $3 with App New User Only</div>
                                     <div className={cx('c-721-child-child')}>
-                                        <div className={cx('qr')}></div>
+                                        <div className={cx('qr')}>
+                                            <img src={images.qrCode} alt="qr-code" />
+                                        </div>
                                         <div className={cx('c-721-child-child-child')}>
-                                            <div className={cx('googleplay')}></div>
-                                            <div className={cx('appstore')}></div>
+                                            <div className={cx('googleplay')}>
+                                                <img src={images.googlePlay} alt="google-play" />
+                                            </div>
+                                            <div className={cx('appstore')}>
+                                                <img src={images.appStore} alt="app-store" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className={cx('c-741')}></div>
+
+                            <div className={cx('c-741')}>
+                                <FacebookIcon />
+                                <TwitterIcon />
+                                <InstaIcon />
+                                <LikendinIcon />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style={{ position: 'relative' }} className={cx('footer')}>
+                    <Line white />
+                    <div className={cx('c-67')}>
+                        <div className={cx('c-66')}>
+                            <CopyRightIcon />
+                            <span className={cx('copy-right-title')}>Copyright Rimel 2022. All right reserved</span>
                         </div>
                     </div>
                 </div>
