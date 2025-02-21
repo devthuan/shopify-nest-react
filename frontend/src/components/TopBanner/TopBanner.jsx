@@ -27,7 +27,7 @@ const TopBanner = ({ slides }) => {
     };
 
     const nextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+        setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
     };
     return (
         <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className={cx('wrapper')}>
