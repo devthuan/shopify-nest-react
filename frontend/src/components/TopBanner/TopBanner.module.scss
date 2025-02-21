@@ -1,0 +1,39 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.slide-change {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+// .prev {
+//     position: absolute;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     left: 32px;
+//     font-size: 30px;
+//     color: #fff;
+// }
+
+// .next {
+//     position: absolute;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     right: 32px;
+//     font-size: 30px;
+//     color: #fff;
+// }

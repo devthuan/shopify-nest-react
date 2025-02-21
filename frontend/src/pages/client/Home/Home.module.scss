@@ -1,5 +1,27 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 1440px;
+    width: 100%;
+    position: relative;
 
+    .line-4 {
+        left: 100px;
+    }
+}
 
-.text {
-    color: red;
+.container {
+    width: 1170px;
+    padding-top: 40px;
+}
+
+.top-content {
+    display: flex;
+    margin-bottom: 140px;
+}
+
+.top-banner {
+    margin-left: 45px;
+    width: 892px;
+    height: 344px;
 }

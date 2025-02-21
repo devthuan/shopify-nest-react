@@ -14,6 +14,24 @@ export const DropDownIcon = ({ width = '2.4rem', height = '2.4rem', className })
     </svg>
 );
 
+export const DropDownRightIcon = ({ width = '2.4rem', height = '2.4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            width={width}
+            height={height}
+            viewBox="0 0 24 24"
+            fill="none"
+        >
+            <path
+                d="M12.95 11.636L8 6.68597L9.414 5.27197L15.778 11.636L9.414 18L8 16.586L12.95 11.636Z"
+                fill="black"
+            />
+        </svg>
+    );
+};
+
 export const UnderLine = ({ className }) => {
     return (
         <svg
@@ -240,6 +258,58 @@ export const CopyRightIcon = ({ width = '1.9rem', height = '2rem', className }) 
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
+        </svg>
+    );
+};
+
+export const ArrowRightIcon = ({ width = '2.4rem', height = '2.4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 24 24"
+            fill="none"
+        >
+            <path
+                d="M3.5 12H20M20 12L13 5M20 12L13 19"
+                stroke="#FAFAFA"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    );
+};
+
+export const EllipseIcon = ({ width = '1.2rem', height = '1.2rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 12 12"
+            fill="none"
+        >
+            <circle opacity="0.5" cx="6" cy="6" r="6" fill="white" />
+        </svg>
+    );
+};
+
+export const EllipseSelectedIcon = ({ width = '1.4rem', height = '1.4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 14 14"
+            fill="none"
+        >
+            <circle cx="7" cy="7" r="5" fill="#DB4444" />
+            <circle cx="7" cy="7" r="6" stroke="white" stroke-width="2" />
         </svg>
     );
 };
