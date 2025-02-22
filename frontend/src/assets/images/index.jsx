@@ -4,6 +4,7 @@ import appStore from '~/assets/images/app-store.png';
 import anh1 from '~/assets/images/anh1.png';
 import anh2 from '~/assets/images/anh2.png';
 import anh3 from '~/assets/images/anh3.png';
+import anhSanPham from '~/assets/images/anhSanPham.png';
 
 const images = {
     qrCode,
@@ -12,6 +13,7 @@ const images = {
     anh1,
     anh2,
     anh3,
+    anhSanPham,
 };
 
 export default images;

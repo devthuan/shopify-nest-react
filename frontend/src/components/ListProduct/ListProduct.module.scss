@@ -1,0 +1,57 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .view-all {
+        position: absolute;
+        position: absolute;
+        top: -100px;
+        right: 0;
+        display: flex;
+        gap: 8px;
+
+        button {
+            display: flex;
+            padding: 16px 48px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 4px;
+            background: var(--Button2, #db4444);
+
+            //text
+            color: var(--Text, #fafafa);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px;
+        }
+    }
+
+    .change-wrapper {
+        position: absolute;
+        top: -80px;
+        right: 0;
+        display: flex;
+        gap: 8px;
+
+        .change-prev,
+        .change-next {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .arrow-icon {
+            position: absolute;
+        }
+    }
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
