@@ -1,16 +1,15 @@
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
-import images from '~/assets/images';
 import { EllipseProductIcon, EyeProductIcon, HeartProductIcon, StarFullProductIcon } from '~/components/Icons';
 const cx = classNames.bind(styles);
 
-const Product = ({ slides }) => {
+const Product = ({ sale, image, name, priceFinal, pricePre }) => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx('top')}>
-                    <img className={cx('image')} src={images.anhSanPham} />
-                    <span className={cx('sale')}>-40%</span>
+                    <img className={cx('image')} src={image} />
+                    <span className={cx('sale')}>{sale}</span>
                     <span className={cx('heart')}>
                         <EllipseProductIcon fill={'#fff'} className={cx('ellipse-icon')} />
                         <HeartProductIcon className={cx('heart-icon')} />
@@ -21,10 +20,10 @@ const Product = ({ slides }) => {
                     </span>
                 </div>
                 <div className={cx('bottom')}>
-                    <div className={cx('name')}>HAVIT HV-G92 Gamepad</div>
+                    <div className={cx('name')}>{name}</div>
                     <div className={cx('price')}>
-                        <span className={cx('price-final')}>$120</span>
-                        <span className={cx('price-pre')}>$160</span>
+                        <span className={cx('price-final')}>{priceFinal}</span>
+                        <span className={cx('price-pre')}>{pricePre}</span>
                     </div>
                     <div className={cx('evaluation')}>
                         <div className={cx('star-wrapper')}>

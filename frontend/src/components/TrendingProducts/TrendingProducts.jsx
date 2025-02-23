@@ -6,9 +6,19 @@ import ListProduct from '../ListProduct/ListProduct';
 
 const cx = classNames.bind(styles);
 
-const TrendingProducts = ({ topTitle, heading, haveTimer, haveChangePage, haveViewAll }) => {
+const TrendingProducts = ({
+    className,
+    topTitle,
+    heading,
+    haveTimer,
+    haveChangePage,
+    haveViewAll,
+    rowQuantity,
+    isCateGory,
+    rowBrowseCategoryQuantity,
+}) => {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', className)}>
             <div className={cx('container')}>
                 <div className={cx('header')}>
                     <div className={cx('left')}>
@@ -23,7 +33,13 @@ const TrendingProducts = ({ topTitle, heading, haveTimer, haveChangePage, haveVi
                     </div>
                 </div>
 
-                <ListProduct haveChangePage={haveChangePage} haveViewAll={haveViewAll} />
+                <ListProduct
+                    haveChangePage={haveChangePage}
+                    haveViewAll={haveViewAll}
+                    rowQuantity={rowQuantity}
+                    isCateGory={isCateGory}
+                    rowBrowseCategoryQuantity={rowBrowseCategoryQuantity}
+                />
             </div>
         </div>
     );
