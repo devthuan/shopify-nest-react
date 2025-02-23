@@ -16,11 +16,11 @@ const TopBanner = ({ slides }) => {
         if (isHovered) return;
 
         const interval = setInterval(() => {
-            nextSlide();
+            setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
         }, 3000);
 
         return () => clearInterval(interval);
-    }, [currentIndex, isHovered]);
+    }, [isHovered, slides.length]);
 
     const goToSlide = (index) => {
         setCurrentIndex(index);
