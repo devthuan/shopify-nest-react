@@ -1,14 +1,21 @@
-import { Type } from "class-transformer";
-import { IsArray, IsNumber, IsPositive, IsString, Min, MinLength, ValidateNested } from "class-validator";
+import { Expose, Type } from "class-transformer";
+import { IsArray, IsNumber, IsObject, IsOptional, IsPositive, IsString, Min, MinLength, ValidateNested } from "class-validator";
 export class AttributeDto {
+    @IsOptional()
+    id?: string
+
     @IsString({ message: 'Tên thuộc tính phải là chuỗi' })
-    name: string;
+    attributeName: string;
 
     @IsString({ message: 'Giá trị thuộc tính phải là chuỗi' })
     attributeValue: string;
 }
 
 export class VariantDto {
+
+    @IsOptional()
+    id?: string
+
     @IsNumber({}, { message: 'Giá phải là số' })
     @Min(0, { message: 'Giá không thể âm' })
     price: number;
@@ -20,8 +27,10 @@ export class VariantDto {
     @IsArray({ message: 'Danh sách thuộc tính phải là một mảng' })
     @ValidateNested({ each: true })
     @Type(() => AttributeDto)
-    attribute: AttributeDto[];
+    attributes: AttributeDto[];
 }
+
+
 export class CreateProductDto {
     @IsString({ message: 'Tên phải là chuỗi' })
     @MinLength(5, { message: 'Tên phải có ít nhất 5 ký tự' })
@@ -33,6 +42,10 @@ export class CreateProductDto {
 
     @IsString({ message: 'Mã danh mục phải là chuỗi' })
     categoryId: string
+
+    @IsArray({ message: 'Danh sách url ảnh phải là một mảng' })
+   
+    images: string[];
 
     @IsArray({ message: 'Danh sách biến thể phải là một mảng' })
     @ValidateNested({ each: true })

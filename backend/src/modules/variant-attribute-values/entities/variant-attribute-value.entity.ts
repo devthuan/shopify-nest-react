@@ -6,9 +6,9 @@ import { Entity, ManyToOne } from "typeorm";
 @Entity({ name: "variantAttributeValues" })
 export class VariantAttributeValues extends BaseEntity{
 
-    @ManyToOne(() => Variants, variant => variant.variantAttributeValues)
+    @ManyToOne(() => Variants, variant => variant.variantAttributeValues, { onDelete: 'CASCADE'})
     variant: Variants;
 
-    @ManyToOne(() => AttributeValues, attributeValues => attributeValues.variantAttributeValues)
+    @ManyToOne(() => AttributeValues, attributeValues => attributeValues.variantAttributeValues, { onDelete: 'CASCADE'})
     attributeValues: AttributeValues;
 }

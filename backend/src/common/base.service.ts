@@ -264,28 +264,49 @@ export class BaseService<T extends BaseEntity> {
     }
   }
 
-  async recover(id: string): Promise<object> {
-    try {
-      const entityName = this.repository.target instanceof Function 
+  // async recover(id: string): Promise<object> {
+  //   try {
+  //     const entityName = this.repository.target instanceof Function 
+  //     ? this.repository.target.name 
+  //     : this.repository.target;
+
+  //     const data = await this.repository.createQueryBuilder('entity')
+  //       .where('entity.id = :id', {id : id})
+  //       .andWhere('entity.deletedAt IS NOT NULL')
+  //       .getOne();
+      
+  //       if(!data) {
+  //         throw new NotFoundException('Dữ liệu không tồn tại')
+  //       }
+        
+  //       data.deletedAt = null
+  //       await this.repository.save(data);
+  //       return {message: `khôi phục ${entityName} thành công.`}
+  //   } catch (error) {
+  //     CommonException.handle(error)
+  //   }
+  // }
+
+  async recover(id: string) {
+  try {
+    const entityName = this.repository.target instanceof Function 
       ? this.repository.target.name 
       : this.repository.target;
 
-      const data = await this.repository.createQueryBuilder('entity')
-        .where('entity.id = :id', {id})
-        .andWhere('entity.deletedAt is not null')
-        .getOne();
-      
-        if(!data) {
-          throw new NotFoundException('Dữ liệu không tồn tại')
-        }
-        
-        data.deletedAt = null
-        await this.repository.save(data);
-        return {message: `khôi phục ${entityName} thành công.`}
-    } catch (error) {
-      CommonException.handle(error)
+    // Gọi phương thức recover() của TypeORM
+    const result = await this.repository.restore(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`${entityName} không tồn tại hoặc chưa bị xóa.`);
     }
+
+    return { message: `Khôi phục ${entityName} thành công.` };
+  } catch (error) {
+    CommonException.handle(error);
+    return { message: 'Lỗi khi khôi phục dữ liệu' };
   }
+}
+
 
   async checkExisting(data: { name?: string; code?: string; id?: string }): Promise<boolean> {
     try {

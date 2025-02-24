@@ -20,8 +20,8 @@ import { GoogleStrategy } from './strategy/google.strategy';
     TypeOrmModule.forFeature([Accounts, Roles]),
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET || "secret",
-      signOptions: { expiresIn: process.env.JWT_EXPIRE || '30d' },
+      secret: process.env.JWT_SECRET || "secret_password",
+      signOptions: { expiresIn: process.env.JWT_EXPIRE || '36998990s' },
     }),
     MailModule,
     RedisModule,

@@ -1,4 +1,5 @@
 import { BaseEntity } from "src/common/base.entity";
+import { Cart } from "src/modules/carts/entities/cart.entity";
 import { Products } from "src/modules/products/entities/product.entity";
 import { VariantAttributeValues } from "src/modules/variant-attribute-values/entities/variant-attribute-value.entity";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
@@ -16,10 +17,13 @@ export class Variants extends BaseEntity{
     stock: number;
 
     @ManyToOne(() => Products, products => products.variants)
-    product: Products;
+    products: Products;
 
     @OneToMany(() => VariantAttributeValues, variant_attribute => variant_attribute.variant)
     variantAttributeValues: VariantAttributeValues[];
+
+    @OneToMany(() => Cart, carts => carts.variants)
+    carts: Cart[];
 
     
    
