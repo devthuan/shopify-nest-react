@@ -524,3 +524,18 @@ export const BrowseCategoryIcon = () => {
         </svg>
     );
 };
+
+export const Ellipse20Icon = ({ width = '6.2rem', height = '6.2rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 62 62"
+            fill="none"
+        >
+            <circle cx="31" cy="31" r="31" fill="white" />
+        </svg>
+    );
+};

@@ -31,3 +31,84 @@
     width: 892px;
     height: 344px;
 }
+
+.view-all-fs-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+
+    .view-all-fs-btn {
+        padding: 16px 48px;
+    }
+}
+.hot-banner {
+    width: 1170px;
+    height: 500px;
+    background: var(--Button, #000);
+    flex-shrink: 0;
+    position: relative;
+    margin-bottom: 71px;
+
+    .left {
+        display: flex;
+        flex-direction: column;
+
+        .top-title {
+            color: var(--Button1, #0f6);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 20px;
+            padding-top: 69px;
+            padding-left: 56px;
+        }
+        .title {
+            color: var(--Text, #fafafa);
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 60px;
+            letter-spacing: 1.92px;
+            width: 508px;
+            padding-left: 56px;
+            padding-top: 52px;
+        }
+
+        .timer-ellipse {
+            padding-top: 32px;
+            padding-left: 56px;
+        }
+
+        .buy-now-btn {
+            border-radius: 4px;
+            background: var(--Button1, #0f6);
+            padding: 4px 16px;
+        }
+    }
+
+    .light-behind {
+        position: absolute;
+        right: 114px;
+        top: 0;
+        width: 504px;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 504px;
+            background: #d9d9d9;
+            filter: blur(100px);
+            opacity: 0.3;
+        }
+
+        img {
+            position: relative;
+            z-index: 10;
+        }
+    }
+}

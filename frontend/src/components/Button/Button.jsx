@@ -2,16 +2,14 @@ import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 const cx = classNames.bind(styles);
 
-const Button = ({ text, width, height, marginTop, marginBottom }) => {
-    const buttonStyles = {
-        width,
-        height,
-        marginTop,
-        marginBottom,
-    };
+const Button = ({ children, className, green, primary, secondary, small }) => {
     return (
-        <div style={buttonStyles} className={cx('wrapper')}>
-            <div className={cx('container')}>{text}</div>
+        <div
+            className={cx('wrapper', className, {
+                small,
+            })}
+        >
+            <button className={cx('container', { green, primary, secondary, small })}>{children}</button>
         </div>
     );
 };
