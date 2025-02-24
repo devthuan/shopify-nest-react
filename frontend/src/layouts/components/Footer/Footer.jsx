@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 import { CopyRightIcon, FacebookIcon, InstaIcon, LikendinIcon, SendIcon, TwitterIcon } from '~/components/Icons';
 import images from '~/assets/images';
-import Line from '~/components/LIne/Line';
+import Line from '~/components/Line/Line';
 
 const cx = classNames.bind(styles);
 

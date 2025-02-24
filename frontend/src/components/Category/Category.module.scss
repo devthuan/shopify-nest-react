@@ -1,0 +1,13 @@
+.wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    padding-right: 16px;
+    .line-4 {
+        width: 0.5px;
+        top: -40px;
+        left: 100%;
+        height: calc(100% + 40px);
+    }
+}

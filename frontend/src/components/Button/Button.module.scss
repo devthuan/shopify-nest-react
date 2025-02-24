@@ -1,0 +1,42 @@
+.container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 48px;
+    gap: 10px;
+
+    color: var(--Text, #fafafa);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+
+    &.small {
+        padding: 10px 48px;
+    }
+}
+
+.primary {
+    border-radius: 4px;
+    background: var(--Button2, #db4444);
+
+    &:hover {
+        border-radius: 4px;
+        background: var(--Hover-Button, #e07575);
+        color: var(--Text, #fafafa);
+    }
+}
+
+.secondary {
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        color: var(--Text1, #7d8184);
+    }
+}
+
+.green {
+    background: var(--Button1, #0f6);
+    border-radius: 4px;
+}

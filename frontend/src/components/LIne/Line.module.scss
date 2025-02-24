@@ -7,7 +7,7 @@
     opacity: 0.3;
 }
 
-.line.vertical {
+.vertical {
     left: unset;
     right: unset;
     top: 0;
@@ -15,7 +15,6 @@
     width: 1px;
     height: 100%;
 }
-
 .line.toLeft {
     right: 100%;
 }
