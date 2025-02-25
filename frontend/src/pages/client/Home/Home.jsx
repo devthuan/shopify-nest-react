@@ -7,6 +7,7 @@ import TrendingProducts from '~/components/TrendingProducts/TrendingProducts';
 import Button from '~/components/Button/Button';
 import Line from '~/components/Line/Line';
 import TimerEllipse from '~/components/TimerEllipse/TimerEllipse';
+import FullServices from '~/components/FullServices/FullServices';
 const cx = classNames.bind(styles);
 
 const slides = [images.anh1, images.anh2, images.anh3];
@@ -72,10 +73,13 @@ const Home = () => {
                 />
 
                 <div className={cx('centerInside')}>
-                    <Button primary className="mt-[60px] mb-[60px]">
+                    <Button primary className="mt-[60px] mb-[140px]">
                         View All Products
                     </Button>
                 </div>
+
+                <TrendingProducts topTitle={'Featured'} heading={'New Arrival'} isNewArrival className="mb-[140px]" />
+                <FullServices className="mb-[140px]" />
             </div>
         </div>
     );

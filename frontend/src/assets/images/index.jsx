@@ -6,6 +6,9 @@ import anh2 from '~/assets/images/anh2.png';
 import anh3 from '~/assets/images/anh3.png';
 import anhSanPham from '~/assets/images/anhSanPham.png';
 import productHotBanner from '~/assets/images/product-hot-banner.png';
+import img570x600 from '~/assets/images/570x600.png';
+import img570x284 from '~/assets/images/570x284.png';
+import img270x284 from '~/assets/images/270x284.png';
 
 const images = {
     qrCode,
@@ -16,6 +19,9 @@ const images = {
     anh3,
     anhSanPham,
     productHotBanner,
+    img570x600,
+    img570x284,
+    img270x284,
 };
 
 export default images;
