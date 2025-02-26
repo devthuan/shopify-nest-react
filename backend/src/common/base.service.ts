@@ -1,4 +1,4 @@
-import { DeepPartial, Repository } from 'typeorm';
+import { Brackets, DeepPartial, Repository } from 'typeorm';
 import { BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 import { CommonException } from './exception';
@@ -204,22 +204,25 @@ export class BaseService<T extends BaseEntity> {
         throw new NotFoundException('Dữ liệu không tồn tại')
       }
 
-      if(partialEntity['name']) {
-      
+      if (partialEntity['name'] || partialEntity['code']) {
       const queryBuilder = this.repository.createQueryBuilder('entity')
-        if (partialEntity['name']) {
-          queryBuilder.where('entity.name = :name', { name: partialEntity['name'] })
-        }
-        if (partialEntity['code']) {
-          queryBuilder.orWhere('entity.code = :code', { code: partialEntity['code'] })
-        }
-        queryBuilder.andWhere('entity.deletedAt is null')
+        .where('entity.deletedAt IS NULL')
+        .andWhere('entity.id != :id', { id }) // Loại trừ chính nó
+        .andWhere(
+          new Brackets((qb) => {
+            if (partialEntity['name']) {
+              qb.where('entity.name = :name', { name: partialEntity['name'] });
+            }
+            if (partialEntity['code']) {
+              qb.orWhere('entity.code = :code', { code: partialEntity['code'] });
+            }
+          })
+        );
 
-        const existingEntity = await queryBuilder.getOne();
+      const existingEntity = await queryBuilder.getOne();
 
-      if(existingEntity ) {
-        
-        throw new ConflictException('Tên hoặc mã đã tồn tại')
+      if (existingEntity) {
+        throw new ConflictException('Tên hoặc mã đã tồn tại');
       }
     }
     // Thêm updatedAt vào partialEntity với ép kiểu

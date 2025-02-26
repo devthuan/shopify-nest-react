@@ -1,6 +1,6 @@
 import { VariantsService } from './../variants/variants.service';
 import { AttributesService } from './../attributes/attributes.service';
-import { Injectable, NotFoundException, Delete } from '@nestjs/common';
+import { Injectable, NotFoundException, Delete, BadRequestException } from '@nestjs/common';
 import { CreateProductDto, VariantDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { BaseService } from 'src/common/base.service';
@@ -500,6 +500,58 @@ export class ProductsService extends BaseService<Products> {
         .split(" ")
         .map(word => word.charAt(0).toUpperCase())
         .join("")
+  }
+
+  async checkExistingProductAttribute(productAttributeId: string): Promise<Variants> {
+
+    try {
+      
+      const productAttribute = await this.variantsRepository.createQueryBuilder('variants')
+        .leftJoinAndSelect('variants.products', 'products')
+        .leftJoinAndSelect('products.discounts', 'discounts')
+        .where('variants.id = :id', { id: productAttributeId })
+        .andWhere('variants.deletedAt IS NULL')
+        .getOne();
+
+      if(!productAttribute) {
+        throw new NotFoundException('Biến thể sản phẩm không tồn tại');
+      }
+
+      if(productAttribute.stock === 0){
+        throw new BadRequestException('Biến thể sản phẩm đã hết hàng');
+      }
+      
+     
+     
+      
+      return productAttribute;
+
+      
+    } catch (error) {
+      CommonException.handle(error);
+    }
+  }
+
+   async checkExistingProductAttributeNotQuantity(productAttributeId: string): Promise<Variants> {
+
+    try {
+      
+      const productAttribute = await this.variantsRepository.createQueryBuilder('productAttributes')
+        .leftJoinAndSelect('productAttributes.products', 'products')
+        .leftJoinAndSelect('products.productDiscount', 'productDiscount')
+        .where('productAttributes.id = :id', { id: productAttributeId })
+        .andWhere('productAttributes.deletedAt IS NULL')
+        .getOne();
+
+      if(!productAttribute) {
+        throw new NotFoundException('Product attribute not found');
+      }
+      return productAttribute;
+
+      
+    } catch (error) {
+      CommonException.handle(error);
+    }
   }
 
  

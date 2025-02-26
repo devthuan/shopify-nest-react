@@ -12,5 +12,6 @@ import { Accounts } from '../auth/entities/account.entity';
   ],
   controllers: [VouchersController],
   providers: [VouchersService],
+  exports: [VouchersService]
 })
 export class VouchersModule {}

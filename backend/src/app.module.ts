@@ -18,6 +18,9 @@ import { ProductImagesModule } from './modules/product_images/product_images.mod
 import { CloudinaryModule } from './modules/cloudinary/cloudinary.module';
 import { VouchersModule } from './modules/vouchers/vouchers.module';
 import { CartsModule } from './modules/carts/carts.module';
+import { BillsModule } from './modules/bills/bills.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { DiscountsModule } from './modules/discounts/discounts.module';
 
 @Module({
   imports: [
@@ -50,6 +53,9 @@ import { CartsModule } from './modules/carts/carts.module';
       CloudinaryModule,
       VouchersModule,
       CartsModule,
+      BillsModule,
+      PaymentsModule,
+      DiscountsModule,
     ],
   controllers: [AppController],
   providers: [AppService],

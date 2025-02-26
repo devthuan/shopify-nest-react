@@ -1,5 +1,6 @@
 import { BaseEntity } from "src/common/base.entity";
 import { Categories } from "src/modules/categories/entities/category.entity";
+import { Discounts } from "src/modules/discounts/entities/discount.entity";
 import { ProductImages } from "src/modules/product_images/entities/product_image.entity";
 import { Variants } from "src/modules/variants/entities/variants.entity";
 import {  Column, Entity, ManyToOne, OneToMany } from "typeorm";
@@ -21,6 +22,9 @@ export class Products extends BaseEntity {
 
     @OneToMany(() => Variants, variants => variants.products)
     variants: Variants[];
+
+    @OneToMany(() => Discounts, discounts => discounts.products)
+    discounts: Discounts[];
 
 
 }
