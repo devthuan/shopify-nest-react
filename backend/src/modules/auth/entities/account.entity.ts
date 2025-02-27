@@ -2,6 +2,9 @@ import { Exclude } from "class-transformer";
 import { BaseEntity } from "src/common/base.entity";
 import { Bills } from "src/modules/bills/entities/bill.entity";
 import { Cart } from "src/modules/carts/entities/cart.entity";
+import { NotificationAccounts } from "src/modules/notifications/entities/notification-account.entity";
+import { Notification } from "src/modules/notifications/entities/notification.entity";
+import { Reviews } from "src/modules/reviews/entities/review.entity";
 import { Roles } from "src/modules/role/entities/role.entity";
 import { UseVouchers } from "src/modules/vouchers/entities/use-voucher.entity";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
@@ -46,5 +49,14 @@ export class Accounts extends BaseEntity {
     carts: Cart
 
     @OneToMany(() => Bills, bills => bills.accounts)
-    bills: Bills
+    bills: Bills[]
+
+    @OneToMany(() => Reviews, reviews => reviews.accounts)
+    reviews: Reviews
+
+    @OneToMany(() => Notification, notification => notification.accounts)
+    notifications: Notification
+
+    @OneToMany(() => NotificationAccounts, notificationAccounts => notificationAccounts.accounts)
+    notificationAccounts: NotificationAccounts
 }
