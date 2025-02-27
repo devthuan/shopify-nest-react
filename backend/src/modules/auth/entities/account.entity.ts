@@ -1,7 +1,10 @@
 import { Exclude } from "class-transformer";
 import { BaseEntity } from "src/common/base.entity";
+import { Bills } from "src/modules/bills/entities/bill.entity";
+import { Cart } from "src/modules/carts/entities/cart.entity";
 import { Roles } from "src/modules/role/entities/role.entity";
-import { Column, Entity, ManyToOne } from "typeorm";
+import { UseVouchers } from "src/modules/vouchers/entities/use-voucher.entity";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity({name: 'accounts'})
 export class Accounts extends BaseEntity {
@@ -35,4 +38,13 @@ export class Accounts extends BaseEntity {
 
     @ManyToOne(() => Roles, roles => roles.accounts)
     role: Roles;
+
+    @OneToMany(() => UseVouchers, useVouchers => useVouchers.accounts)
+    useVouchers: UseVouchers
+
+    @OneToMany(() => Cart, carts => carts.accounts)
+    carts: Cart
+
+    @OneToMany(() => Bills, bills => bills.accounts)
+    bills: Bills
 }

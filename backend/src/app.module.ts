@@ -14,6 +14,13 @@ import { ProductsModule } from './modules/products/products.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { AttributesModule } from './modules/attributes/attributes.module';
 import { VariantAttributeValuesModule } from './modules/variant-attribute-values/variant-attribute-values.module';
+import { ProductImagesModule } from './modules/product_images/product_images.module';
+import { CloudinaryModule } from './modules/cloudinary/cloudinary.module';
+import { VouchersModule } from './modules/vouchers/vouchers.module';
+import { CartsModule } from './modules/carts/carts.module';
+import { BillsModule } from './modules/bills/bills.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { DiscountsModule } from './modules/discounts/discounts.module';
 
 @Module({
   imports: [
@@ -42,6 +49,13 @@ import { VariantAttributeValuesModule } from './modules/variant-attribute-values
       CategoriesModule,
       AttributesModule,
       VariantAttributeValuesModule,
+      ProductImagesModule,
+      CloudinaryModule,
+      VouchersModule,
+      CartsModule,
+      BillsModule,
+      PaymentsModule,
+      DiscountsModule,
     ],
   controllers: [AppController],
   providers: [AppService],

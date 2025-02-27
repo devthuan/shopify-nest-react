@@ -10,14 +10,16 @@ import { Attributes } from '../attributes/entities/attribute.entity';
 import { VariantsModule } from '../variants/variants.module';
 import { Variants } from '../variants/entities/variants.entity';
 import { VariantAttributeValues } from '../variant-attribute-values/entities/variant-attribute-value.entity';
+import { ProductImages } from '../product_images/entities/product_image.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Products, Attributes, AttributeValues, VariantAttributeValues, Variants]),
+    TypeOrmModule.forFeature([Products, Attributes, AttributeValues, VariantAttributeValues, Variants, ProductImages]),
     CategoriesModule,
     AttributesModule,
   ],
   controllers: [ProductsController],
   providers: [ProductsService],
+  exports: [ProductsService]
 })
 export class ProductsModule {}

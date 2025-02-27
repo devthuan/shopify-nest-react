@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Column, CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn } from "typeorm";
 
 export class BaseEntity {
     @PrimaryGeneratedColumn('uuid') 
@@ -16,6 +16,7 @@ export class BaseEntity {
     @Column({
         default: null
     })
+    @DeleteDateColumn()
     @Exclude()
     deletedAt: Date;
 }
