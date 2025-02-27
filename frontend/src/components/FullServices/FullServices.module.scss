@@ -1,0 +1,10 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cột */
+    gap: 40px; /* Khoảng cách giữa các item */
+    justify-items: center;
+
+    & > :nth-child(n + 4) {
+        grid-column: span 2; /* Hàng dưới có 2 item, trải dài 2 cột */
+    }
+}

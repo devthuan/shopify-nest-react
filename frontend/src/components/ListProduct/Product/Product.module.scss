@@ -1,5 +1,6 @@
 .wrapper {
     position: relative;
+    cursor: pointer;
 }
 
 .container {
@@ -13,8 +14,7 @@
     position: relative;
     border-radius: 4px;
     background: var(--Secondary, #f5f5f5);
-    width: 270px;
-    height: 250px;
+    padding: 49px 49px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,6 +24,21 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
+    }
+
+    .add-to-cart-btn {
+        position: absolute;
+        bottom: -50px;
+        opacity: 0;
+        transition: bottom 0.3s ease, opacity 0.3s ease;
+        right: 0;
+        left: 0;
+        background-color: #000;
+    }
+
+    &:hover .add-to-cart-btn {
+        bottom: 0px;
+        opacity: 1;
     }
 
     .sale {
@@ -41,45 +56,58 @@
         line-height: 18px;
     }
 
-    .heart {
+    .intergrate-icon {
         position: absolute;
         top: 12px;
         right: 12px;
-        width: 3.4rem;
-        height: 3.4rem;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
 
-        .ellipse-icon {
-            position: absolute;
-        }
-        .heart-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    }
+        .heart {
+            width: 3.4rem;
+            height: 3.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    .eye {
-        position: absolute;
-        top: 54px;
-        right: 12px;
-        width: 3.4rem;
-        height: 3.4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .ellipse-icon {
-            position: absolute;
+            .ellipse-icon {
+                position: absolute;
+            }
+            .heart-icon {
+                color: #fff;
+                z-index: 10;
+            }
         }
-        .eye-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+
+        .eye {
+            width: 3.4rem;
+            height: 3.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .ellipse-icon {
+                position: absolute;
+            }
+            .eye-icon {
+                z-index: 10;
+            }
+        }
+
+        .trash {
+            width: 3.4rem;
+            height: 3.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .ellipse-icon {
+                position: absolute;
+            }
+            .trash-icon {
+                z-index: 10;
+            }
         }
     }
 }
