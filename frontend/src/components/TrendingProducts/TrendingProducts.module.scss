@@ -10,7 +10,7 @@
 .header {
     display: flex;
     align-items: flex-end;
-    gap: 470px;
+    width: 100%;
 }
 
 .left {
@@ -132,5 +132,27 @@
     .new-arrival-right-bottom-wrapper {
         display: flex;
         gap: 30px;
+    }
+}
+
+// WishList CSS
+.top-wishlist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    span {
+        color: #000;
+        text-align: center;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px;
+    }
+
+    .top {
+        display: flex;
+        align-items: center;
+        gap: 16px;
     }
 }

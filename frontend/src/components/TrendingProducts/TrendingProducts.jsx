@@ -4,6 +4,7 @@ import { RectangleIcon } from '~/components/Icons';
 import Timer from '../Timer/Timer';
 import ListProduct from '../ListProduct/ListProduct';
 import images from '~/assets/images';
+import Button from '../Button/Button';
 
 const cx = classNames.bind(styles);
 
@@ -18,21 +19,38 @@ const TrendingProducts = ({
     isCateGory,
     rowBrowseCategoryQuantity,
     isNewArrival,
+    isInWishList,
+    buttonNameInWishList,
+    isForYou,
 }) => {
     return (
         <div className={cx('wrapper', className)}>
             <div className={cx('container')}>
                 <div className={cx('header')}>
-                    <div className={cx('left')}>
-                        <div className={cx('title')}>
-                            <div className={cx('top')}>
-                                <RectangleIcon />
-                                <span>{topTitle}</span>
+                    {!isInWishList ? (
+                        <div className={cx('left')}>
+                            <div className={cx('title')}>
+                                <div className={cx('top')}>
+                                    <RectangleIcon />
+                                    <span>{topTitle}</span>
+                                </div>
+                                {!noHeading && <span className={cx('title-detail')}>{heading}</span>}
                             </div>
-                            <span className={cx('title-detail')}>{heading}</span>
+                            <div className={cx('timer')}>{haveTimer && <Timer />}</div>
                         </div>
-                        <div className={cx('timer')}>{haveTimer && <Timer />}</div>
-                    </div>
+                    ) : (
+                        // Wishlist (<Số lượng product>)
+                        <div className={cx('top-wishlist')}>
+                            {!isForYou && <span>WishList ({4})</span>}
+                            {isForYou && (
+                                <div className={cx('top')}>
+                                    <RectangleIcon />
+                                    <span>{isForYou}</span>
+                                </div>
+                            )}
+                            <Button secondary>{buttonNameInWishList}</Button>
+                        </div>
+                    )}
                 </div>
 
                 {!isNewArrival ? (
@@ -41,7 +59,9 @@ const TrendingProducts = ({
                         haveViewAll={haveViewAll}
                         rowQuantity={rowQuantity}
                         isCateGory={isCateGory}
+                        isInWishList={isInWishList}
                         rowBrowseCategoryQuantity={rowBrowseCategoryQuantity}
+                        isForYou={isForYou}
                     />
                 ) : (
                     <div className={cx('new-arrival-wrapper')}>

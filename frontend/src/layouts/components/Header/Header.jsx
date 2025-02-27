@@ -29,11 +29,11 @@ const Header = () => {
                             <SearchIcon />
                         </div>
                     </div>
-                    {/* <div className={cx('more')}>
+                    <div className={cx('more')}>
                         <HeartIcon />
                         <CartIcon />
                         <UserIcon />
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>

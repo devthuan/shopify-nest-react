@@ -9,6 +9,7 @@ import productHotBanner from '~/assets/images/product-hot-banner.png';
 import img570x600 from '~/assets/images/570x600.png';
 import img570x284 from '~/assets/images/570x284.png';
 import img270x284 from '~/assets/images/270x284.png';
+import loginAndRegisterImg from '~/assets/images/loginAndRegisterImg.png';
 
 const images = {
     qrCode,
@@ -22,6 +23,7 @@ const images = {
     img570x600,
     img570x284,
     img270x284,
+    loginAndRegisterImg,
 };
 
 export default images;

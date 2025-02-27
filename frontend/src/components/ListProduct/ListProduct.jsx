@@ -5,10 +5,20 @@ import images from '~/assets/images';
 import { useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, BrowseCategoryIcon, EllipseProductIcon } from '../Icons';
 import BrowseCategory from './BrowseCategory/BrowseCategory';
+import Button from '../Button/Button';
 
 const cx = classNames.bind(styles);
 
-const ListProduct = ({ haveChangePage, haveViewAll, rowQuantity, isCateGory, rowBrowseCategoryQuantity }) => {
+const ListProduct = ({
+    haveChangePage,
+    haveViewAll,
+    viewAllBtnSecondary = false,
+    rowQuantity,
+    isCateGory,
+    rowBrowseCategoryQuantity,
+    isInWishList,
+    isForYou,
+}) => {
     // fake data product
     const TOTAL_PRODUCT = 10;
     const productNames = [
@@ -91,9 +101,9 @@ const ListProduct = ({ haveChangePage, haveViewAll, rowQuantity, isCateGory, row
     return (
         <div className={cx('wrapper')}>
             {haveViewAll && (
-                <div className={cx('view-all')}>
-                    <button>View All</button>
-                </div>
+                <Button primary={!viewAllBtnSecondary} secondary={viewAllBtnSecondary} className={cx('view-all')}>
+                    {haveViewAll}
+                </Button>
             )}
             {haveChangePage && (
                 <div className={cx('change-wrapper')}>
@@ -128,6 +138,8 @@ const ListProduct = ({ haveChangePage, haveViewAll, rowQuantity, isCateGory, row
                               name={product.name}
                               priceFinal={product.priceFinal}
                               pricePre={product.pricePre}
+                              isInWishList={isInWishList}
+                              isForYou={isForYou}
                           />
                       ))
                     : itemsToShow.map((browseCategory, index) => (

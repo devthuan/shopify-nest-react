@@ -457,6 +457,27 @@ export const EyeProductIcon = ({ width = '2.4rem', height = '2.4rem', className 
     );
 };
 
+export const TrashProductIcon = ({ width = '2.4rem', height = '2.4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 24 24"
+            fill="none"
+        >
+            <path
+                d="M20 5.57143H5.33333L6.66667 21H17.3333L18.6667 5.57143H4M12 9.42857V17.1429M15.3333 9.42857L14.6667 17.1429M8.66667 9.42857L9.33333 17.1429M9.33333 5.57143L10 3H14L14.6667 5.57143"
+                stroke="black"
+                stroke-width="1.56"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    );
+};
+
 export const StarFullProductIcon = ({ width = '2rem', height = '2rem', className }) => {
     return (
         <svg
@@ -520,29 +541,29 @@ export const StarZeroProductIcon = ({ width = '2rem', height = '2rem', className
 export const BrowseCategoryIcon = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
-            <g clip-path="url(#clip0_560_868)">
+            <g clipPath="url(#clip0_560_868)">
                 <path
                     d="M38.9375 6.125H17.0625C15.5523 6.125 14.3281 7.34922 14.3281 8.85938V47.1406C14.3281 48.6508 15.5523 49.875 17.0625 49.875H38.9375C40.4477 49.875 41.6719 48.6508 41.6719 47.1406V8.85938C41.6719 7.34922 40.4477 6.125 38.9375 6.125Z"
-                    stroke="black"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
                 <path
                     d="M25.6667 7H31.1354"
-                    stroke="black"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
                 <path
                     d="M28 44.0052V44.0305"
-                    stroke="black"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
-                <line x1="15.1667" y1="39.8334" x2="40.8333" y2="39.8334" stroke="black" stroke-width="2" />
+                <line x1="15.1667" y1="39.8334" x2="40.8333" y2="39.8334" stroke="currentColor" strokeWidth="2" />
             </g>
             <defs>
                 <clipPath id="clip0_560_868">
@@ -727,6 +748,43 @@ export const ServiceItemShieldIcon = ({ width = '4rem', height = '4rem', classNa
                 fill="#FAFAFA"
                 stroke="#FAFAFA"
             />
+        </svg>
+    );
+};
+
+export const GoogleIcon = ({ width = '2.4rem', height = '2.5rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 24 25"
+            fill="none"
+        >
+            <g clip-path="url(#clip0_575_3336)">
+                <path
+                    d="M23.766 12.7764C23.766 11.9607 23.6999 11.1406 23.5588 10.3381H12.24V14.9591H18.7217C18.4528 16.4494 17.5885 17.7678 16.323 18.6056V21.6039H20.19C22.4608 19.5139 23.766 16.4274 23.766 12.7764Z"
+                    fill="#4285F4"
+                />
+                <path
+                    d="M12.2401 24.5008C15.4766 24.5008 18.2059 23.4382 20.1945 21.6039L16.3276 18.6055C15.2517 19.3375 13.8627 19.752 12.2445 19.752C9.11388 19.752 6.45946 17.6399 5.50705 14.8003H1.5166V17.8912C3.55371 21.9434 7.7029 24.5008 12.2401 24.5008Z"
+                    fill="#34A853"
+                />
+                <path
+                    d="M5.50253 14.8003C4.99987 13.3099 4.99987 11.6961 5.50253 10.2057V7.11481H1.51649C-0.18551 10.5056 -0.18551 14.5004 1.51649 17.8912L5.50253 14.8003Z"
+                    fill="#FBBC04"
+                />
+                <path
+                    d="M12.2401 5.24966C13.9509 5.2232 15.6044 5.86697 16.8434 7.04867L20.2695 3.62262C18.1001 1.5855 15.2208 0.465534 12.2401 0.500809C7.7029 0.500809 3.55371 3.05822 1.5166 7.11481L5.50264 10.2058C6.45064 7.36173 9.10947 5.24966 12.2401 5.24966Z"
+                    fill="#EA4335"
+                />
+            </g>
+            <defs>
+                <clipPath id="clip0_575_3336">
+                    <rect width="24" height="24" fill="white" transform="translate(0 0.5)" />
+                </clipPath>
+            </defs>
         </svg>
     );
 };

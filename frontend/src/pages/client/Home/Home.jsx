@@ -46,8 +46,8 @@ const Home = () => {
                 <TrendingProducts
                     topTitle={'This Month'}
                     heading={'Best Selling Products'}
-                    haveChangePage
                     rowQuantity={1}
+                    haveViewAll={'View All'}
                     className="mb-[140px] pt-[80px]"
                 />
 
