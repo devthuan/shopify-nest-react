@@ -132,7 +132,7 @@ const ListProduct = ({
                 {!isCateGory
                     ? itemsToShow.map((product, index) => (
                           <Product
-                              key={product.id}
+                              key={index}
                               sale={product.sale}
                               image={product.image}
                               name={product.name}
@@ -143,11 +143,7 @@ const ListProduct = ({
                           />
                       ))
                     : itemsToShow.map((browseCategory, index) => (
-                          <BrowseCategory
-                              key={browseCategory.id}
-                              title={browseCategory.title}
-                              icon={browseCategory.icon}
-                          />
+                          <BrowseCategory key={index} title={browseCategory.title} icon={browseCategory.icon} />
                       ))}
             </div>
         </div>

@@ -1,0 +1,76 @@
+.wrapper {
+    margin-top: 40px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 1170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 190px;
+    flex-grow: 1; /* Cho phép điều chỉnh tự nhiên */
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 24px; /* Khoảng cách linh hoạt, không quá lớn */
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+    }
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Linh hoạt khi thêm/xóa phần tử */
+
+    .search-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 7px 12px;
+        background: #f5f5f5;
+        border-radius: 4px;
+
+        .search-inner {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            input {
+                font-size: 12px;
+                opacity: 0.5;
+                border: none;
+                background: transparent;
+            }
+        }
+    }
+
+    .more {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Giữ khoảng cách hợp lý */
+    }
+}

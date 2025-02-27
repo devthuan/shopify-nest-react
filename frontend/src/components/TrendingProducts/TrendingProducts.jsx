@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import classNames from 'classnames/bind';
 import styles from './TrendingProducts.module.scss';
 import { RectangleIcon } from '~/components/Icons';
@@ -22,6 +23,7 @@ const TrendingProducts = ({
     isInWishList,
     buttonNameInWishList,
     isForYou,
+    noHeading,
 }) => {
     return (
         <div className={cx('wrapper', className)}>
@@ -36,7 +38,7 @@ const TrendingProducts = ({
                                 </div>
                                 {!noHeading && <span className={cx('title-detail')}>{heading}</span>}
                             </div>
-                            <div className={cx('timer')}>{haveTimer && <Timer />}</div>
+                            <div className={cx('timer')}>{ <Timer expireTime={haveTimer}  />}</div>
                         </div>
                     ) : (
                         // Wishlist (<Số lượng product>)

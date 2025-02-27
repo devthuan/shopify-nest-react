@@ -1,0 +1,22 @@
+.centerInside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 1440px;
+    width: 100%;
+    position: relative;
+
+    .line-4 {
+        left: 100px;
+    }
+}
+
+.container {
+    width: 1170px;
+    padding-top: 40px;
+    position: relative;
+}

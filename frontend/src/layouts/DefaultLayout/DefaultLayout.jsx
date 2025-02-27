@@ -5,7 +5,6 @@ import Header from '~/layouts/components/Header/Header';
 import Footer from '~/layouts/components/Footer/Footer';
 import Line from '~/components/Line/Line';
 const cx = classNames.bind(styles);
-// eslint-disable-next-line react/prop-types
 const DefaultLayout = ({ children }) => {
     return (
         <>
