@@ -33,7 +33,7 @@ export class RedisService {
     }
   }
 
-    async set(key: string, value: string, ttl?: number): Promise<void> {
+    async set(key: string, value: any, ttl?: number): Promise<void> {
         await this.client.set(key, value);
         if (ttl) {
             await this.client.expire(key, ttl); // Đặt thời gian hết hạn (TTL)

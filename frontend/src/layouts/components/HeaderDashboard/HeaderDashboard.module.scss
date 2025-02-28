@@ -1,0 +1,66 @@
+.wrapper {
+    width: 100%;
+    background: var(--Button, #000);
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    max-width: 1440px;
+    width: 100%;
+    height: 48px;
+    gap: 231px;
+    margin-left: 300px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.title {
+    color: var(--Text, #fafafa);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+}
+.shop {
+    color: var(--Text, #fafafa);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 171.429% */
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.languages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.english {
+    color: var(--Text, #fafafa);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+}
+
+.drop-icon {
+    width: 24px;
+    height: 24px;
+}

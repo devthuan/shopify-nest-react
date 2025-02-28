@@ -30,6 +30,7 @@ function App() {
                             />
                         );
                     })}
+                    
                     {/* routes for admin */}
                     {adminRoutes.map((route, i) => {
                         const Page = route.component;

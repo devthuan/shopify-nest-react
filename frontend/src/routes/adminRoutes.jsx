@@ -4,5 +4,6 @@ import DashboardLayout from '~/layouts/DashboardLayout/DashboardLayout';
 
 export const adminRoutes = [
     { path: '/dashboard', component: Home, layout: DashboardLayout },
+    { path: '/manage-product', component: Home, layout: DashboardLayout },
     { path: '/*', component: Page404, layout: null },
 ];
