@@ -1,0 +1,61 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 1440px;
+    width: 100%;
+    position: relative;
+}
+
+.container {
+    width: 1170px;
+    padding-top: 40px;
+    position: relative;
+
+    // font
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+
+    table {
+        border-collapse: separate;
+        border-spacing: 0px 40px;
+        table-layout: fixed;
+        width: 100%;
+        tr {
+            background: var(--Primary, #fff);
+            box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 24px 40px;
+        }
+
+        th {
+            text-align: center; /* Canh giữa tiêu đề */
+        }
+
+        td:first-child,
+        th:first-child {
+            text-align: left; /* Cột đầu tiên căn trái */
+        }
+
+        td:last-child,
+        th:last-child {
+            text-align: right; /* Cột cuối cùng căn phải */
+        }
+
+        td:not(:first-child):not(:last-child) {
+            text-align: center; /* Các cột ở giữa căn giữa */
+        }
+    }
+}
+
+.buttons-interact {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -16px;
+}

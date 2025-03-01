@@ -2,10 +2,11 @@ import classNames from 'classnames/bind';
 import styles from './ListProduct.module.scss';
 import Product from './Product/Product';
 import images from '~/assets/images';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, BrowseCategoryIcon, EllipseProductIcon } from '../Icons';
 import BrowseCategory from './BrowseCategory/BrowseCategory';
 import Button from '../Button/Button';
+import { fetchProducts } from '~/services/productApi';
 
 const cx = classNames.bind(styles);
 
@@ -74,7 +75,7 @@ const ListProduct = ({
             icon: <BrowseCategoryIcon />,
         };
     });
-    console.log(listBrowseCategory);
+    // console.log(listBrowseCategory);
 
     // PAGINATE !!!
     const itemsPerPage = isCateGory

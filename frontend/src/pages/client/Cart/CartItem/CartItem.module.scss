@@ -1,0 +1,62 @@
+td {
+    img {
+        display: flex;
+        width: 54px;
+        height: 54px;
+        padding: 8px 2px 7px 2px;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+    }
+}
+
+.row-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Cột đầu tiên - căn trái */
+td:first-child .row-wrapper {
+    justify-content: flex-start;
+}
+
+/* Cột cuối cùng - căn phải */
+td:last-child .row-wrapper {
+    justify-content: flex-end;
+}
+
+/* Các cột còn lại - căn giữa */
+td:not(:first-child):not(:last-child) .row-wrapper {
+    justify-content: center;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    width: 72px;
+    height: 44px;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    justify-content: space-between;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.quantity-value {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.controls svg {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}

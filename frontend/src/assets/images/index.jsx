@@ -10,6 +10,7 @@ import img570x600 from '~/assets/images/570x600.png';
 import img570x284 from '~/assets/images/570x284.png';
 import img270x284 from '~/assets/images/270x284.png';
 import loginAndRegisterImg from '~/assets/images/loginAndRegisterImg.png';
+import itemInCart from '~/assets/images/itemInCart.png';
 
 const images = {
     qrCode,
@@ -24,6 +25,7 @@ const images = {
     img570x284,
     img270x284,
     loginAndRegisterImg,
+    itemInCart,
 };
 
 export default images;

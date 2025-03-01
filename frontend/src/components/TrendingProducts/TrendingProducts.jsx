@@ -22,6 +22,7 @@ const TrendingProducts = ({
     isInWishList,
     buttonNameInWishList,
     isForYou,
+    noHeading,
 }) => {
     return (
         <div className={cx('wrapper', className)}>
