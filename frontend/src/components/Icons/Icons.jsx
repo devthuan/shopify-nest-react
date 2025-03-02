@@ -31,6 +31,22 @@ export const DropDownRightIcon = ({ width = '2.4rem', height = '2.4rem', classNa
         </svg>
     );
 };
+export const DropDownLeftIcon = ({ width = '2.4rem', height = '2.4rem', className, color = '#202224' }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 24 24"
+            fill="none"
+        >
+            <g opacity="0.6">
+                <path d="M15.41 16.4064L10.83 12L15.41 7.59362L14 6.24002L8 12L14 17.76L15.41 16.4064Z" fill={color} />
+            </g>
+        </svg>
+    );
+};
 
 export const UnderLine = ({ className }) => {
     return (
@@ -891,7 +907,6 @@ export const TotalOrderIcon = ({ width = '6rem', height = '6rem', className, col
     );
 };
 
-
 export const TotalSalesIcon = ({ width = '6rem', height = '6rem', className, color = '#4AD991' }) => {
     return (
         <svg
@@ -956,4 +971,3 @@ export const TotalPendingIcon = ({ width = '6rem', height = '6rem', className, c
         </svg>
     );
 };
-

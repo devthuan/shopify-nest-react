@@ -22,9 +22,9 @@ const Sidebar = () => {
                     link: '/manage-product',
                 },
                 {
-                    title: 'Services',
+                    title: 'Order',
                     icon: images.dashboardIcon,
-                    link: '/services',
+                    link: '/orders',
                 },
                 {
                     title: 'Contact',

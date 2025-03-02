@@ -89,18 +89,11 @@ const Dashboard = () => {
         );
     };
 
-    return (
-        <div className={cx('w-full')}>
-            <h1 className="text-[32px] font-medium text-[#202224] ">Dashboard</h1>
-            <div className="w-full mt-[27px]">
-                <div className="grid grid-cols-4 grid-rows-1 gap-[30px] h-[161px]">
-                    {listBoxDashboard.map((item, index) => renderBoxStatistic(item, index))}
-                </div>
-            </div>
-
+    const renderBoxChart = (title, chartType) => {
+        return (
             <div className=" w-full h-[444px] bg-white mt-[30px] p-[32px]">
                 <div className="w-full flex justify-between">
-                    <h1 className="text-[24px] text-[#202224] font-medium">Sales Details</h1>
+                    <h1 className="text-[24px] text-[#202224] font-medium">{title}</h1>
                     <div className="w-[104px] h-[28px] border-2  border-[#D5D5D5]">
                         <select
                             id="date"
@@ -123,10 +116,21 @@ const Dashboard = () => {
                         </select>
                     </div>
                 </div>
-                <div className="w-full h-full mt-[15px]">
-                    <AreaChart width={1000} height={350} />
+                <div className="w-full h-full mt-[15px] pb-[10px]">{chartType}</div>
+            </div>
+        );
+    };
+
+    return (
+        <div className={cx('w-full')}>
+            <h1 className="text-[32px] font-medium text-[#202224] ">Dashboard</h1>
+            <div className="w-full mt-[27px]">
+                <div className="grid grid-cols-4 grid-rows-1 gap-[30px] h-[161px]">
+                    {listBoxDashboard.map((item, index) => renderBoxStatistic(item, index))}
                 </div>
             </div>
+            {renderBoxChart('Sales Details', <AreaChart width={'100%'} height={'100%'} />)}
+            {renderBoxChart('Sales Details', <AreaChart width={'100%'} height={'100%'} />)}
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { AreaChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Area } from 'recharts';
+import { AreaChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Area, ResponsiveContainer } from 'recharts';
 
 const AreaChartCustom = ({ width, height }) => {
     const data = [
@@ -47,14 +47,16 @@ const AreaChartCustom = ({ width, height }) => {
     ];
 
     return (
-        <AreaChart width={width} height={height} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Line />
-            <Tooltip />
-            <Area type="monotone" dataKey="uv" stroke="blue" fill="#4379EE29" />
-        </AreaChart>
+        <ResponsiveContainer width={width} height={height}>
+            <AreaChart data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Line />
+                <Tooltip />
+                <Area type="monotone" dataKey="uv" stroke="blue" fill="#4379EE29" />
+            </AreaChart>
+        </ResponsiveContainer>
     );
 };
 
