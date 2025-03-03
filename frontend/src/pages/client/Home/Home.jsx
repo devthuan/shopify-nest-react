@@ -24,7 +24,7 @@ const Home = () => {
                 <TrendingProducts
                     topTitle={"Today's"}
                     heading={'Flash Sales'}
-                    haveTimer
+                    haveTimer={5}
                     haveChangePage
                     rowQuantity={1}
                 />

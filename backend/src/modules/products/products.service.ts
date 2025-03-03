@@ -1,3 +1,4 @@
+import { RedisService } from './../redis/redis.service';
 import { VariantsService } from './../variants/variants.service';
 import { AttributesService } from './../attributes/attributes.service';
 import { Injectable, NotFoundException, Delete, BadRequestException } from '@nestjs/common';
@@ -39,6 +40,7 @@ export class ProductsService extends BaseService<Products> {
   
 
     private readonly dataSource : DataSource,
+    private readonly redisService: RedisService,
     private readonly categoryService: CategoriesService,
     private readonly attributeService: AttributesService,
 
@@ -158,6 +160,17 @@ export class ProductsService extends BaseService<Products> {
       filters: Record<string, any> = {} // Nhận filters từ controller
   ): Promise<{ total: number;  currentPage: number; totalPage: number; limit : number; data: any[]}>{
     try {
+
+
+      // check caching
+      const cacheProducts = await this.redisService.get('products');
+
+      if (cacheProducts) {
+        console.log("data from cache")
+        return typeof cacheProducts === 'string' ? JSON.parse(cacheProducts) : cacheProducts;
+      }
+      
+      
       const queryBuilder = await this.productsRepository.createQueryBuilder('products')
         .leftJoinAndSelect('products.images', 'product_images')
         .leftJoinAndSelect('products.variants', 'variants')
@@ -179,8 +192,6 @@ export class ProductsService extends BaseService<Products> {
           'attributeValues.value',
           'attributes.name'
         ])
-
-        
 
          // count total
           const total = await queryBuilder.getCount();
@@ -210,6 +221,14 @@ export class ProductsService extends BaseService<Products> {
             }))
           }))
 
+        
+        const response = { total, totalPage, currentPage: +page, limit: +limit, data };
+
+        await this.redisService.set(
+          'products',
+          JSON.stringify(response),
+          60
+        )
 
         return {
           total,

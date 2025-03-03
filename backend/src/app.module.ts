@@ -21,6 +21,8 @@ import { CartsModule } from './modules/carts/carts.module';
 import { BillsModule } from './modules/bills/bills.module';
 import { PaymentsModule } from './modules/payments/payments.module';
 import { DiscountsModule } from './modules/discounts/discounts.module';
+import { ReviewsModule } from './modules/reviews/reviews.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 
 @Module({
   imports: [
@@ -56,6 +58,8 @@ import { DiscountsModule } from './modules/discounts/discounts.module';
       BillsModule,
       PaymentsModule,
       DiscountsModule,
+      ReviewsModule,
+      NotificationsModule,
     ],
   controllers: [AppController],
   providers: [AppService],

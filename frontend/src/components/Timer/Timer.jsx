@@ -5,15 +5,21 @@ import { EllipseTimerIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
-const Timer = () => {
+const Timer = ({ expireTime }) => {
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 10,
+        seconds: 0,
     });
 
     useEffect(() => {
+        setTimeLeft({
+            days: expireTime,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+        });
         const timer = setInterval(() => {
             setTimeLeft((prev) => {
                 let { days, hours, minutes, seconds } = prev;

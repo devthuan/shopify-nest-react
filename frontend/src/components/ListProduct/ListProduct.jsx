@@ -6,7 +6,9 @@ import { useEffect, useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, BrowseCategoryIcon, EllipseProductIcon } from '../Icons';
 import BrowseCategory from './BrowseCategory/BrowseCategory';
 import Button from '../Button/Button';
-import { fetchProducts } from '~/services/productApi';
+import { getProductByLimitAndPage } from '~/services/productApi';
+import { current } from '@reduxjs/toolkit';
+import { getCategoryByLimitAndPage } from '~/services/categoryApi';
 
 const cx = classNames.bind(styles);
 
@@ -20,84 +22,68 @@ const ListProduct = ({
     isInWishList,
     isForYou,
 }) => {
-    // fake data product
-    const TOTAL_PRODUCT = 10;
-    const productNames = [
-        'HAVIT HV-G92 Gamepad',
-        'AK-900 Wired Keyboard',
-        'IPS LCD Gaming Monitor',
-        'S-Series Comfort Chair',
-        'Logitech MX Master 3',
-        'Razer BlackShark V2',
-        'HyperX Cloud II Wireless',
-        "Samsung 27' 4K Monitor",
-        'Corsair K95 RGB Platinum',
-        'SteelSeries Rival 600',
-    ];
-    const getRandomSale = () => {
-        const salePercents = [10, 20, 30, 40, 50]; // Các mức giảm giá hợp lý
-        return salePercents[Math.floor(Math.random() * salePercents.length)];
+    const ITEMS_PER_PAGE = isCateGory ? 6 * rowBrowseCategoryQuantity : 4 * rowQuantity;
+    const [listProduct, setListProduct] = useState([]);
+    const [totalPagesProduct, setTotalPagesProduct] = useState(1);
+
+    const [listBrowseCategory, setListBrowseCategory] = useState([]);
+    const [totalPagesBrowseCategory, setTotalPagesBrowseCategory] = useState(1);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    // Call API
+    useEffect(() => {
+        isCateGory ? fetchDataBrowseCategory(currentPage) : fetchDataProduct(currentPage);
+    }, [currentPage]);
+
+    const fetchDataProduct = async (currentPage) => {
+        const res = await getProductByLimitAndPage(ITEMS_PER_PAGE, currentPage);
+        if (res) {
+            console.log(res);
+            handleListProductData(res.data);
+            setTotalPagesProduct(res.totalPage);
+        }
     };
-    const getRandomPrice = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-    const listProduct = Array.from({ length: TOTAL_PRODUCT }, (_, index) => {
-        const sale = getRandomSale();
-        const pricePre = getRandomPrice(100, 500); // Giá gốc từ $100 - $500
-        const priceFinal = Math.round(pricePre * (1 - sale / 100)); // Giá sau giảm
 
+    // Xu li data product
+    const handleListProductData = (listProductRaw) => {
+        const data = listProductRaw.map((product) => handleProductData(product));
+        setListProduct(data);
+    };
+
+    const handleProductData = (product) => {
+        const prices = product.variants.map((variant) => variant.price);
         return {
-            id: index + 1,
-            sale: `-${sale}%`,
-            image: images.anhSanPham,
-            name: productNames[index % productNames.length],
-            priceFinal: `$${priceFinal}`,
-            pricePre: `$${pricePre}`,
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            images: product.images,
+            lowestPrice: Math.min(...prices),
+            highestPrice: Math.max(...prices),
         };
-    });
+    };
 
-    // fake data BrowseCategory
-    const TOTAL_CATEGORY = 20;
-    const browseCategoryNames = [
-        'Smartphones',
-        'Laptops',
-        'Gaming',
-        'PC',
-        'Headphones',
-        'Smart',
-        'Cameras',
-        'Drones',
-        'VR Headsets',
-        'Speakers',
-    ];
-    const listBrowseCategory = Array.from({ length: TOTAL_CATEGORY }, (_, index) => {
-        return {
-            id: index + 1,
-            title: browseCategoryNames[index % browseCategoryNames.length],
-            icon: <BrowseCategoryIcon />,
-        };
-    });
-    // console.log(listBrowseCategory);
-
-    // PAGINATE !!!
-    const itemsPerPage = isCateGory
-        ? 6 * rowBrowseCategoryQuantity
-        : 4 * (rowQuantity === 'infinite' ? Math.ceil(TOTAL_PRODUCT / 4) : rowQuantity);
-    const totalItems = isCateGory ? TOTAL_CATEGORY : TOTAL_PRODUCT;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-    const [currentPage, setCurrentPage] = useState(0);
+    // Xu li data BrowseCategory
+    const fetchDataBrowseCategory = async (currentPage) => {
+        const res = await getCategoryByLimitAndPage(ITEMS_PER_PAGE, currentPage);
+        if (res) {
+            setListBrowseCategory(res.data);
+            setTotalPagesBrowseCategory(res.totalPage);
+        }
+    };
 
     const handleNextPage = () => {
-        setCurrentPage((prevPage) => (prevPage === totalPages - 1 ? 0 : prevPage + 1));
+        if (isCateGory) {
+            setCurrentPage((prevPage) => (prevPage === totalPagesBrowseCategory ? 1 : prevPage + 1));
+        } else {
+            console.log(totalPagesProduct);
+            setCurrentPage((prevPage) => (prevPage === totalPagesProduct ? 1 : prevPage + 1));
+        }
     };
 
     const handlePrevPage = () => {
-        setCurrentPage((prevPage) => (prevPage === 0 ? totalPages - 1 : prevPage - 1));
+        if (isCateGory) setCurrentPage((prevPage) => (prevPage === 1 ? totalPagesBrowseCategory : prevPage - 1));
+        else setCurrentPage((prevPage) => (prevPage === 1 ? totalPagesProduct : prevPage - 1));
     };
-
-    const startIndex = currentPage * itemsPerPage;
-    const itemsToShow = isCateGory
-        ? listBrowseCategory.slice(startIndex, startIndex + itemsPerPage)
-        : listProduct.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <div className={cx('wrapper')}>
@@ -131,24 +117,19 @@ const ListProduct = ({
             )}
             <div className={cx('container')}>
                 {!isCateGory
-                    ? itemsToShow.map((product, index) => (
+                    ? listProduct.map((product) => (
                           <Product
                               key={product.id}
-                              sale={product.sale}
-                              image={product.image}
+                              image={product.images[0]}
                               name={product.name}
-                              priceFinal={product.priceFinal}
-                              pricePre={product.pricePre}
+                              priceFrom={product.lowestPrice}
+                              priceTo={product.highestPrice}
                               isInWishList={isInWishList}
                               isForYou={isForYou}
                           />
                       ))
-                    : itemsToShow.map((browseCategory, index) => (
-                          <BrowseCategory
-                              key={browseCategory.id}
-                              title={browseCategory.title}
-                              icon={browseCategory.icon}
-                          />
+                    : listBrowseCategory.map((category) => (
+                          <BrowseCategory key={category.id} title={category.name} icon={<BrowseCategoryIcon />} />
                       ))}
             </div>
         </div>

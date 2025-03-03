@@ -10,7 +10,6 @@ const WishList = () => {
             <div className={cx('container')}>
                 <TrendingProducts
                     topTitle={'This Month'}
-                    heading={'Best Selling Products'}
                     rowQuantity={1}
                     isInWishList
                     buttonNameInWishList={'Move All To Bag'}
@@ -19,12 +18,11 @@ const WishList = () => {
 
                 <TrendingProducts
                     topTitle={'This Month'}
-                    heading={'Best Selling Products'}
                     rowQuantity={1}
                     isInWishList
                     buttonNameInWishList={'See All'}
-                    isForYou={'Just For You'}
                     className="mb-[140px]"
+                    isForYou={'Just For You'}
                 />
             </div>
         </div>

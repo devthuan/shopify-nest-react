@@ -10,8 +10,11 @@ import img570x600 from '~/assets/images/570x600.png';
 import img570x284 from '~/assets/images/570x284.png';
 import img270x284 from '~/assets/images/270x284.png';
 import loginAndRegisterImg from '~/assets/images/loginAndRegisterImg.png';
+import dashboardIcon from '~/assets/images/dashboardIcon.svg';
+import menuIcon from '~/assets/images/menuIcon.svg';
+import avatarImg from '~/assets/images/avatar.png';
+import alertIcon from '~/assets/images/notiIcon.svg';
 import itemInCart from '~/assets/images/itemInCart.png';
-
 const images = {
     qrCode,
     googlePlay,
@@ -25,6 +28,10 @@ const images = {
     img570x284,
     img270x284,
     loginAndRegisterImg,
+    dashboardIcon,
+    menuIcon,
+    avatarImg,
+    alertIcon,
     itemInCart,
 };
 

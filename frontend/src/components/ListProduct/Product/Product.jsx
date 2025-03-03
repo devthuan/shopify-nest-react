@@ -10,7 +10,7 @@ import {
 import Button from '~/components/Button/Button';
 const cx = classNames.bind(styles);
 
-const Product = ({ sale, image, name, priceFinal, pricePre, isInWishList, isForYou }) => {
+const Product = ({ sale, image, name, priceFinal, pricePre, isInWishList, isForYou, priceFrom, priceTo }) => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -48,7 +48,9 @@ const Product = ({ sale, image, name, priceFinal, pricePre, isInWishList, isForY
                 <div className={cx('bottom')}>
                     <div className={cx('name')}>{name}</div>
                     <div className={cx('price')}>
-                        <span className={cx('price-final')}>{priceFinal}</span>
+                        <span className={cx('price-final')}>
+                            {priceFinal || priceFrom == priceTo ? priceFrom : priceFrom + ' ~ ' + priceTo}
+                        </span>
                         <span className={cx('price-pre')}>{pricePre}</span>
                     </div>
                     <div className={cx('evaluation')}>
