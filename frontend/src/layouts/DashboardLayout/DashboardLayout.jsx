@@ -5,7 +5,7 @@ import HeaderDashboard from '../components/HeaderDashboard/HeaderDashboard';
 const cx = classNames.bind(styles);
 const DashboardLayout = ({ children }) => {
     return (
-        <div className="flex w-full h-screen ">
+        <div className={cx("flex w-full h-screen ")}>
             {/* Sidebar */}
             <div className="w-[240px] h-screen fixed bg-white z-10">
                 <Sidebar />
@@ -18,11 +18,12 @@ const DashboardLayout = ({ children }) => {
                 </div>
 
                 {/* Content */}
-                <div className="bg-[#F5F6FA] flex-1 p-[30px] mt-[70px] overflow-y-auto">{children}</div>
+                <div className="w-full  bg-[#F5F6FA] flex-1 p-[30px] mt-[70px] overflow-y-auto">
+                    <div className="w-full max-w-[1440px] mx-auto">{children}</div>
+                </div>
             </div>
         </div>
     );
 };
 
 export default DashboardLayout;
-

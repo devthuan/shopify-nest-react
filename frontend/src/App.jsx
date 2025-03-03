@@ -3,6 +3,7 @@ import { publicRoutes } from './routes/publicRoutes';
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout.jsx';
 import { Fragment } from 'react';
 import { adminRoutes } from './routes/adminRoutes';
+import RouteWrapper from './routes/RouteWrapper';
 
 function App() {
     return (
@@ -22,15 +23,11 @@ function App() {
                             <Route
                                 key={i}
                                 path={route.path}
-                                element={
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
-                                }
+                                element={<RouteWrapper layout={Layout} component={Page} />}
                             />
                         );
                     })}
-                    
+
                     {/* routes for admin */}
                     {adminRoutes.map((route, i) => {
                         const Page = route.component;
@@ -44,11 +41,7 @@ function App() {
                             <Route
                                 key={i}
                                 path={route.path}
-                                element={
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
-                                }
+                                element={<RouteWrapper layout={Layout} component={Page} />}
                             />
                         );
                     })}
