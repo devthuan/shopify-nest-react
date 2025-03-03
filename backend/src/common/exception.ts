@@ -35,7 +35,7 @@ export class CommonException {
       const validationErrors = this.formatValidationError(error);
       throw new BadRequestException(validationErrors);
     } else {
-      console.error('Lỗi xảy ra:', error); // Ghi log lỗi cụ thể
+      // console.error('Lỗi xảy ra:', error); // Ghi log lỗi cụ thể
       throw new InternalServerErrorException('Đã xảy ra lỗi không mong muốn.');
     }
   }
