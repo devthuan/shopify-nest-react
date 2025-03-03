@@ -15,6 +15,7 @@ import menuIcon from '~/assets/images/menuIcon.svg';
 import avatarImg from '~/assets/images/avatar.png';
 import alertIcon from '~/assets/images/notiIcon.svg';
 import itemInCart from '~/assets/images/itemInCart.png';
+import bgLogin from '~/assets/images/bg-login-admin.svg';
 const images = {
     qrCode,
     googlePlay,
@@ -33,6 +34,7 @@ const images = {
     avatarImg,
     alertIcon,
     itemInCart,
+    bgLogin,
 };
 
 export default images;

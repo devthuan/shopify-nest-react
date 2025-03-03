@@ -1,13 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './ListProduct.module.scss';
 import Product from './Product/Product';
-import images from '~/assets/images';
 import { useEffect, useState } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, BrowseCategoryIcon, EllipseProductIcon } from '../Icons';
 import BrowseCategory from './BrowseCategory/BrowseCategory';
 import Button from '../Button/Button';
 import { getProductByLimitAndPage } from '~/services/productApi';
-import { current } from '@reduxjs/toolkit';
 import { getCategoryByLimitAndPage } from '~/services/categoryApi';
 
 const cx = classNames.bind(styles);
