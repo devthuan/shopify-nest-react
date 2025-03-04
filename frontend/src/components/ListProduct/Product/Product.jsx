@@ -38,6 +38,10 @@ const Product = ({ sale, image, name, priceFinal, pricePre, isInWishList, isForY
                                     <EllipseProductIcon fill={'#fff'} className={cx('ellipse-icon')} />
                                     <HeartProductIcon className={cx('heart-icon')} />
                                 </span>
+                                <span className={cx('eye')}>
+                                    <EllipseProductIcon fill={'#fff'} className={cx('ellipse-icon')} />
+                                    <EyeProductIcon className={cx('eye-icon')} />
+                                </span>
                             </>
                         )}
                     </div>

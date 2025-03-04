@@ -16,3 +16,13 @@ export const getProductByLimitAndPage = async (limit = 4, page = 1) => {
         throw error;
     }
 };
+
+export const getProductById = async (id) => {
+    try {
+        const response = await axios.get(`products/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        throw error;
+    }
+};

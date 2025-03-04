@@ -62,8 +62,8 @@ const TrendingProducts = ({
                         rowQuantity={rowQuantity}
                         isCateGory={isCateGory}
                         isInWishList={isInWishList}
-                        rowBrowseCategoryQuantity={rowBrowseCategoryQuantity}
                         isForYou={isForYou}
+                        rowBrowseCategoryQuantity={rowBrowseCategoryQuantity}
                     />
                 ) : (
                     <div className={cx('new-arrival-wrapper')}>
