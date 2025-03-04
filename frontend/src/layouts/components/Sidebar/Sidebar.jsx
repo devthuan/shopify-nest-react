@@ -17,9 +17,9 @@ const Sidebar = () => {
                     link: '/dashboard',
                 },
                 {
-                    title: 'Product',
+                    title: 'Users',
                     icon: images.dashboardIcon,
-                    link: '/manage-product',
+                    link: '/admin/users',
                 },
                 {
                     title: 'Order',
@@ -54,7 +54,7 @@ const Sidebar = () => {
         return (
             <NavLink key={index} to={item.link}>
                 {({ isActive }) => (
-                    <div className="w-[240px] h-[50px] relative border-none">
+                    <div className="outline-none w-[240px] h-[50px] relative ">
                         <div className="w-[240px] h-[50px] left-0 top-0 absolute bg-white"></div>
                         <div
                             className={`w-auto h-[50px] left-[25px] right-[20px] absolute text-[14px] flex pl-[15px] gap-[16px] items-center rounded-[10px] 

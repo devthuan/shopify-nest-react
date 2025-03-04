@@ -1,11 +1,7 @@
-import classNames from 'classnames/bind';
-import styles from './Order.module.scss';
-
 import Pagination from '~/components/Pagination/Pagination';
 import { SearchIcon } from '~/components/Icons';
-const cx = classNames.bind(styles);
 
-const Order = () => {
+const User = () => {
     const renderBoxFilter = () => {
         return (
             <div className="min-w-[888px] w-full h-[50px] ">
@@ -201,9 +197,9 @@ const Order = () => {
     };
 
     return (
-        <div className={cx('w-full')}>
+        <div className="w-full">
             <div className="flex  justify-between items-center">
-                <h1 className="text-[32px] font-medium text-[#202224] ">Orders</h1>
+                <h1 className="text-[32px] font-medium text-[#202224] ">Users</h1>
                 <div className="w-[253px] h-[38px] relative ">
                     <input
                         type="text"
@@ -225,4 +221,4 @@ const Order = () => {
     );
 };
 
-export default Order;
+export default User;

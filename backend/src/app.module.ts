@@ -23,6 +23,7 @@ import { PaymentsModule } from './modules/payments/payments.module';
 import { DiscountsModule } from './modules/discounts/discounts.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
+import { AccountsModule } from './modules/accounts/accounts.module';
 
 @Module({
   imports: [
@@ -60,6 +61,7 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
       DiscountsModule,
       ReviewsModule,
       NotificationsModule,
+      AccountsModule,
     ],
   controllers: [AppController],
   providers: [AppService],

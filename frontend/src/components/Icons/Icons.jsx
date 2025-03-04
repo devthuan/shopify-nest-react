@@ -1142,3 +1142,29 @@ export const ReturnIcon = ({ width = '4rem', height = '4rem', className }) => {
         </svg>
     );
 };
+
+export const ApplicationErrorIcon = ({ width = '3.6rem', height = '3.6rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 36 36"
+            fill="none"
+        >
+            <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M18 36C27.9411 36 36 27.9411 36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36Z"
+                fill="url(#paint0_linear_0_21058)"
+            />
+            <defs>
+                <linearGradient id="paint0_linear_0_21058" x1="0" y1="0" x2="0" y2="36" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#FF8F8F" />
+                    <stop offset="1" stopColor="#FFC1C1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    );
+};
