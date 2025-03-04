@@ -15,13 +15,10 @@ import menuIcon from '~/assets/images/menuIcon.svg';
 import avatarImg from '~/assets/images/avatar.png';
 import alertIcon from '~/assets/images/notiIcon.svg';
 import itemInCart from '~/assets/images/itemInCart.png';
-<<<<<<< HEAD
 import detailProductImageSelect1 from '~/assets/images/detailProductImageSelect1.png';
 import detailProductImageSelect2 from '~/assets/images/detailProductImageSelect2.png';
 
-=======
 import bgLogin from '~/assets/images/bg-login-admin.svg';
->>>>>>> 244f2bdd3bc4a688a9a7969010aeb07bbfff3ac7
 const images = {
     qrCode,
     googlePlay,
@@ -40,12 +37,9 @@ const images = {
     avatarImg,
     alertIcon,
     itemInCart,
-<<<<<<< HEAD
     detailProductImageSelect1,
     detailProductImageSelect2,
-=======
     bgLogin,
->>>>>>> 244f2bdd3bc4a688a9a7969010aeb07bbfff3ac7
 };
 
 export default images;
