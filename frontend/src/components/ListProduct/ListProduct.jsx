@@ -36,7 +36,7 @@ const ListProduct = ({
     const fetchDataProduct = async (currentPage) => {
         const res = await getProductByLimitAndPage(ITEMS_PER_PAGE, currentPage);
         if (res) {
-            console.log(res);
+            // console.log(res);
             handleListProductData(res.data);
             setTotalPagesProduct(res.totalPage);
         }

@@ -2,6 +2,18 @@
     width: 1440px;
     display: flex;
     justify-content: center;
+
+    // hide default arrow input type=number
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    /* Firefox */
+    input[type='number'] {
+        -moz-appearance: textfield;
+    }
 }
 
 .container {
@@ -11,7 +23,6 @@
 }
 
 .road-map {
-    color: var(--Text2, #000);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -77,7 +88,6 @@
     }
 
     .price {
-        color: var(--Text2, #000);
         font-size: 24px;
         font-style: normal;
         font-weight: 400;
@@ -86,8 +96,6 @@
     }
 
     .description {
-        color: #000;
-
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -98,7 +106,6 @@
         display: flex;
         align-items: center;
         gap: 24px;
-        color: #000;
 
         font-size: 20px;
         font-style: normal;
@@ -109,12 +116,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-
-            .color-picker-item.selected {
-                padding: 2px;
-                border: 2px solid #000;
-                border-radius: 99%;
-            }
         }
     }
 
@@ -122,7 +123,6 @@
         display: flex;
         align-items: center;
         gap: 24px;
-        color: #000;
         font-size: 20px;
         font-style: normal;
         font-weight: 400;
@@ -142,7 +142,6 @@
                 border-radius: 4px;
                 border: 1px solid rgba(0, 0, 0, 0.5);
 
-                color: var(--Text2, #000);
                 font-size: 14px;
                 font-style: normal;
                 font-weight: 500;
@@ -174,6 +173,7 @@
                 flex-shrink: 0;
                 border-top: 1px solid rgba(0, 0, 0, 0.5);
                 border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+                text-align: center;
 
                 color: var(--Text2, #000);
                 font-size: 20px;
@@ -226,7 +226,6 @@
                 flex-direction: column;
                 gap: 8px;
 
-                color: #000;
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 500;
@@ -248,4 +247,20 @@
     .delivery-method .item:not(:last-child) {
         border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     }
+}
+
+.disable {
+    opacity: 0.2;
+}
+
+.color-picker-item-selected {
+    padding: 2px;
+    border: 2px solid #000;
+    border-radius: 99%;
+}
+
+.product-selected {
+    color: var(--Text, #fafafa);
+    background: var(--Secondary-2, #db4444);
+    border-color: var(--Secondary-2, #db4444) !important;
 }
