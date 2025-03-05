@@ -264,3 +264,7 @@
     background: var(--Secondary-2, #db4444);
     border-color: var(--Secondary-2, #db4444) !important;
 }
+
+.image-selected {
+    border: 2px solid red;
+}

@@ -10,9 +10,20 @@ import {
 import Button from '~/components/Button/Button';
 const cx = classNames.bind(styles);
 
-const Product = ({ sale, image, name, priceFinal, pricePre, isInWishList, isForYou, priceFrom, priceTo }) => {
+const Product = ({
+    sale,
+    image,
+    name,
+    priceFinal,
+    pricePre,
+    isInWishList,
+    isForYou,
+    priceFrom,
+    priceTo,
+    goToProductDetail,
+}) => {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} onClick={goToProductDetail}>
             <div className={cx('container')}>
                 <div className={cx('top')}>
                     <img className={cx('image')} src={image} />

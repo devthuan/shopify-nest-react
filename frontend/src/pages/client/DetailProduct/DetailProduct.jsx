@@ -16,6 +16,8 @@ import TrendingProducts from '~/components/TrendingProducts/TrendingProducts';
 import { useParams } from 'react-router';
 import { getProductById } from '~/services/productApi';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { addProductToCart } from '~/services/cartApi';
 
 const cx = classNames.bind(styles);
 
@@ -25,20 +27,15 @@ const DetailProduct = () => {
 
     const [listSize, setListSize] = useState([]);
     const [listColor, setListColor] = useState([]);
+    const [listImage, setListImage] = useState([]);
 
+    const [imageSelected, setImageSelected] = useState('');
     const [colorSelected, setColorSelected] = useState('');
     const [sizeSelected, setSizeSelected] = useState('');
     const [quantity, setQuantity] = useState(1);
     useEffect(() => {
         fetchProduct();
     }, []);
-
-    useEffect(() => {
-        if (product.variants) {
-            handleGetListSize(product);
-            handleGetListColour(product);
-        }
-    }, [product]);
 
     const fetchProduct = async () => {
         const res = await getProductById(id);
@@ -47,6 +44,20 @@ const DetailProduct = () => {
             console.log(res);
         }
     };
+
+    useEffect(() => {
+        if (product.variants) {
+            handleGetListSize(product);
+            handleGetListColour(product);
+            handleGetListImage(product);
+        }
+    }, [product]);
+
+    useEffect(() => {
+        if (listImage.length > 0) {
+            setImageSelected(listImage[0]); // Ảnh mặc định là ảnh đầu tiên
+        }
+    }, [listImage]);
 
     const handleGetListSize = (productObject) => {
         const sizes = productObject.variants
@@ -76,6 +87,10 @@ const DetailProduct = () => {
         const uniqueColor = Array.from(new Map(color.map((item) => [item.name, item])).values());
 
         setListColor(uniqueColor);
+    };
+
+    const handleGetListImage = (productObject) => {
+        setListImage(productObject.images);
     };
 
     const handleSelectSize = (size) => {
@@ -151,6 +166,51 @@ const DetailProduct = () => {
             setQuantity(value);
         }
     };
+
+    // Todo: Ảnh trùng tên nhau thì vẫn hiện viền đỏ.
+    const handleSelectImage = (image) => {
+        if (image !== imageSelected) {
+            setImageSelected(image);
+        }
+    };
+
+    const handleAddToCart = async () => {
+        // validate
+        if (!colorSelected || !sizeSelected || !quantity) {
+            toast.error('Dữ liệu không hợp lệ!');
+            return;
+        }
+
+        console.log(colorSelected, sizeSelected, quantity);
+
+        // Tìm variant phù hợp với màu sắc và size
+        const selectedVariant = product.variants.find(
+            (variant) =>
+                variant.attributes.some(
+                    (attr) => attr.attributeName === 'Màu sắc' && attr.attributeValue === colorSelected,
+                ) &&
+                variant.attributes.some(
+                    (attr) => attr.attributeName === 'Size' && attr.attributeValue === sizeSelected,
+                ),
+        );
+
+        if (!selectedVariant) {
+            toast.error('Không tìm thấy sản phẩm với màu sắc và kích thước đã chọn.');
+            return;
+        }
+
+        // Kiểm tra hàng còn hay hết
+        if (selectedVariant.stock < quantity) {
+            toast.error(`Sản phẩm vượt quá số lượng trong kho. (còn ${selectedVariant.stock} sản phẩm)`);
+            return;
+        }
+
+        const res = await addProductToCart(selectedVariant.id, quantity);
+        if (res && res.message) {
+            toast.success(res.message);
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -159,21 +219,20 @@ const DetailProduct = () => {
                 <div className={cx('content')}>
                     <div className={cx('left-images')}>
                         <div className={cx('images-select')}>
-                            <div className={cx('image-select')}>
-                                <img src={images.detailProductImageSelect1} alt="image" />
-                            </div>
-                            <div className={cx('image-select')}>
-                                <img src={images.detailProductImageSelect2} alt="image" />
-                            </div>
-                            <div className={cx('image-select')}>
-                                <img src={images.detailProductImageSelect1} alt="image" />
-                            </div>
-                            <div className={cx('image-select')}>
-                                <img src={images.detailProductImageSelect2} alt="image" />
-                            </div>
+                            {listImage.map((image, index) => (
+                                <div
+                                    key={`image-${index}`}
+                                    className={cx('image-select', {
+                                        'image-selected': image === imageSelected,
+                                    })}
+                                    onClick={() => handleSelectImage(image)}
+                                >
+                                    <img src={image} alt="image" />
+                                </div>
+                            ))}
                         </div>
                         <div className={cx('image-view')}>
-                            <img src={images.detailProductImageSelect1} alt="image" />
+                            <img src={imageSelected} alt="image" />
                         </div>
                     </div>
                     <div className={cx('right-description', 'relative')}>
@@ -186,10 +245,7 @@ const DetailProduct = () => {
                             <StarFullProductIcon />
                         </div>
                         <div className={cx('price', 'mt-[16px]')}>{product.price}</div>
-                        <div className={cx('description', 'mt-[24px] mb-[24px]')}>
-                            PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble
-                            free install & mess free removal Pressure sensitive.
-                        </div>
+                        <div className={cx('description', 'mt-[24px] mb-[24px]')}>{product.description}</div>
                         <div className="relative">
                             <Line />
                         </div>
@@ -243,8 +299,8 @@ const DetailProduct = () => {
                                     <PlusIcon />
                                 </span>
                             </div>
-                            <Button primary small className={cx('btn-buy')}>
-                                Buy Now
+                            <Button onClick={() => handleAddToCart()} primary small className={cx('btn-buy')}>
+                                Add To Cart
                             </Button>
                             <div className={cx('add-to-wishlist')}>
                                 <HeartIcon />

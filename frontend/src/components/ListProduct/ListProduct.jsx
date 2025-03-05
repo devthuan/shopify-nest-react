@@ -7,6 +7,7 @@ import BrowseCategory from './BrowseCategory/BrowseCategory';
 import Button from '../Button/Button';
 import { getProductByLimitAndPage } from '~/services/productApi';
 import { getCategoryByLimitAndPage } from '~/services/categoryApi';
+import { useNavigate } from 'react-router';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +21,7 @@ const ListProduct = ({
     isInWishList,
     isForYou,
 }) => {
+    const navigate = useNavigate();
     const ITEMS_PER_PAGE = isCateGory ? 6 * rowBrowseCategoryQuantity : 4 * rowQuantity;
     const [listProduct, setListProduct] = useState([]);
     const [totalPagesProduct, setTotalPagesProduct] = useState(1);
@@ -83,6 +85,10 @@ const ListProduct = ({
         else setCurrentPage((prevPage) => (prevPage === 1 ? totalPagesProduct : prevPage - 1));
     };
 
+    const handleClickProduct = (productId) => {
+        navigate(`/product/${productId}`);
+    };
+
     return (
         <div className={cx('wrapper')}>
             {haveViewAll && (
@@ -124,6 +130,7 @@ const ListProduct = ({
                               priceTo={product.highestPrice}
                               isInWishList={isInWishList}
                               isForYou={isForYou}
+                              goToProductDetail={() => handleClickProduct(product.id)}
                           />
                       ))
                     : listBrowseCategory.map((category) => (
