@@ -1,11 +1,23 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { CartIcon, HeartIcon, SearchIcon, UnderLine, UserIcon } from '~/components/Icons';
-import { Link } from 'react-router';
+import { Link, useNavigate, useLocation } from 'react-router';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const navItems = [
+        { name: 'Home', path: '/' },
+        { name: 'Shop', path: '/shop' },
+        { name: 'Categories', path: '/categories' },
+        { name: 'Contact', path: '/contact' },
+        { name: 'About', path: '/about' },
+        { name: 'Sign Up', path: '/sign-up' },
+    ];
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -14,10 +26,10 @@ const Header = () => {
                         <span>Exclusive</span>
                     </div>
                     <div className={cx('nav')}>
-                        {['Home', 'Shop', 'Categories', 'Contact', 'About', 'Sign Up'].map((item, index) => (
-                            <Link key={index} className={cx('nav-item')}>
-                                <span>{item}</span>
-                                {item === 'Home' && <UnderLine width="100%" />}
+                        {navItems.map((item, index) => (
+                            <Link to={item.path} key={index} className={cx('nav-item')}>
+                                <span>{item.name}</span>
+                                {location.pathname === item.path && <UnderLine width="100%" />}
                             </Link>
                         ))}
                     </div>
@@ -30,9 +42,15 @@ const Header = () => {
                         </div>
                     </div>
                     <div className={cx('more')}>
-                        <HeartIcon />
-                        <CartIcon />
-                        <UserIcon />
+                        <span>
+                            <HeartIcon />
+                        </span>
+                        <span onClick={() => navigate('/cart')}>
+                            <CartIcon />
+                        </span>
+                        <span>
+                            <UserIcon />
+                        </span>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import Loading from '~/components/Loading/Loading';
 const RouteWrapper = ({ component: Component, layout: Layout }) => {
     const [loading, setLoading] = useState(true);
     const params = useParams();
-    console.log(params);
+    // console.log(params);
 
     useEffect(() => {
         setLoading(true);

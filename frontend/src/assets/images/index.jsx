@@ -15,6 +15,9 @@ import menuIcon from '~/assets/images/menuIcon.svg';
 import avatarImg from '~/assets/images/avatar.png';
 import alertIcon from '~/assets/images/notiIcon.svg';
 import itemInCart from '~/assets/images/itemInCart.png';
+import detailProductImageSelect1 from '~/assets/images/detailProductImageSelect1.png';
+import detailProductImageSelect2 from '~/assets/images/detailProductImageSelect2.png';
+
 import bgLogin from '~/assets/images/bg-login-admin.svg';
 const images = {
     qrCode,
@@ -34,6 +37,8 @@ const images = {
     avatarImg,
     alertIcon,
     itemInCart,
+    detailProductImageSelect1,
+    detailProductImageSelect2,
     bgLogin,
 };
 

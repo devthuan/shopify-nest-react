@@ -6,7 +6,7 @@ import Button from '~/components/Button/Button';
 
 const cx = classNames.bind(styles);
 
-const CartTable = ({ className }) => {
+const CartTable = ({ className, listCart, setListCart }) => {
     return (
         <div className={cx('wrapper', className)}>
             <div className={cx('container')}>
@@ -14,14 +14,17 @@ const CartTable = ({ className }) => {
                     <thead>
                         <tr>
                             <th className={cx('header')}>Product</th>
+                            <th className={cx('header')}>Size</th>
+                            <th className={cx('header')}>Color</th>
                             <th className={cx('header')}>Price</th>
                             <th className={cx('header')}>Quantity</th>
                             <th className={cx('header')}>Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <CartItem />
-                        <CartItem />
+                        {listCart &&
+                            listCart.length > 0 &&
+                            listCart.map((cart) => <CartItem key={cart.id} data={cart} setListCart={setListCart} />)}
                     </tbody>
                 </table>
                 <div className={cx('buttons-interact')}>

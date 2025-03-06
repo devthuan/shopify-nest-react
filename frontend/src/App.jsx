@@ -4,6 +4,7 @@ import DefaultLayout from './layouts/DefaultLayout/DefaultLayout.jsx';
 import { Fragment } from 'react';
 import { adminRoutes } from './routes/adminRoutes';
 import RouteWrapper from './routes/RouteWrapper';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
     return (
@@ -47,6 +48,18 @@ function App() {
                     })}
                 </Routes>
             </BrowserRouter>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
         </>
     );
 }

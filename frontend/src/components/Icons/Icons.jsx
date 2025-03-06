@@ -348,7 +348,7 @@ export const ArrowRightIcon = ({ width = '2.4rem', height = '2.4rem', className 
     );
 };
 
-export const EllipseIcon = ({ width = '1.2rem', height = '1.2rem', className }) => {
+export const EllipseIcon = ({ width = '1.2rem', height = '1.2rem', className, fill = 'none' }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -358,7 +358,7 @@ export const EllipseIcon = ({ width = '1.2rem', height = '1.2rem', className }) 
             viewBox="0 0 12 12"
             fill="none"
         >
-            <circle opacity="0.5" cx="6" cy="6" r="6" fill="white" />
+            <circle opacity="0.5" cx="6" cy="6" r="6" fill={fill} />
         </svg>
     );
 };
@@ -1007,6 +1007,142 @@ export const IncreaseIcon = ({ width = '1.6rem', height = '1.6rem', className })
         </svg>
     );
 };
+
+export const MinusIcon = ({ width = '2.4rem', height = '2.4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 24 24"
+            fill="none"
+        >
+            <path d="M20 12H4" stroke="black" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+    );
+};
+
+export const PlusIcon = ({ width = '2.4rem', height = '2.4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 24 24"
+            fill="none"
+        >
+            <path d="M12 20V12M12 12V4M12 12H20M12 12H4" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+    );
+};
+
+export const DeliveryIcon = ({ width = '4rem', height = '4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 40 40"
+            fill="none"
+        >
+            <g clip-path="url(#clip0_261_4843)">
+                <path
+                    d="M11.6673 31.6667C13.5083 31.6667 15.0007 30.1743 15.0007 28.3333C15.0007 26.4924 13.5083 25 11.6673 25C9.82637 25 8.33398 26.4924 8.33398 28.3333C8.33398 30.1743 9.82637 31.6667 11.6673 31.6667Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M28.3333 31.6667C30.1743 31.6667 31.6667 30.1743 31.6667 28.3333C31.6667 26.4924 30.1743 25 28.3333 25C26.4924 25 25 26.4924 25 28.3333C25 30.1743 26.4924 31.6667 28.3333 31.6667Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M8.33398 28.3335H7.00065C5.89608 28.3335 5.00065 27.4381 5.00065 26.3335V21.6668M3.33398 8.3335H19.6673C20.7719 8.3335 21.6673 9.22893 21.6673 10.3335V28.3335M15.0007 28.3335H25.0007M31.6673 28.3335H33.0007C34.1052 28.3335 35.0007 27.4381 35.0007 26.3335V18.3335M35.0007 18.3335H21.6673M35.0007 18.3335L30.5833 10.9712C30.2218 10.3688 29.5708 10.0002 28.8683 10.0002H21.6673"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M8 28H6.66667C5.5621 28 4.66667 27.1046 4.66667 26V21.3333M3 8H19.3333C20.4379 8 21.3333 8.89543 21.3333 10V28M15 28H24.6667M32 28H32.6667C33.7712 28 34.6667 27.1046 34.6667 26V18M34.6667 18H21.3333M34.6667 18L30.2493 10.6377C29.8878 10.0353 29.2368 9.66667 28.5343 9.66667H21.3333"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M5 11.8182H11.6667"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M1.81836 15.4545H8.48503"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M5 19.0909H11.6667"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </g>
+            <defs>
+                <clipPath id="clip0_261_4843">
+                    <rect width="40" height="40" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    );
+};
+
+export const ReturnIcon = ({ width = '4rem', height = '4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 40 40"
+            fill="none"
+        >
+            <g clip-path="url(#clip0_261_4865)">
+                <path
+                    d="M33.3327 18.3334C32.9251 15.4004 31.5645 12.6828 29.4604 10.5992C27.3564 8.51557 24.6256 7.18155 21.6888 6.80261C18.752 6.42366 15.7721 7.02082 13.208 8.5021C10.644 9.98337 8.6381 12.2666 7.49935 15M6.66602 8.33335V15H13.3327"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M6.66602 21.6667C7.07361 24.5997 8.43423 27.3173 10.5383 29.4009C12.6423 31.4845 15.3731 32.8185 18.3099 33.1974C21.2467 33.5764 24.2266 32.9792 26.7907 31.4979C29.3547 30.0167 31.3606 27.7335 32.4994 25M33.3327 31.6667V25H26.666"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </g>
+            <defs>
+                <clipPath id="clip0_261_4865">
+                    <rect width="40" height="40" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    );
+};
+
 export const ApplicationErrorIcon = ({ width = '3.6rem', height = '3.6rem', className }) => {
     return (
         <svg
@@ -1029,6 +1165,50 @@ export const ApplicationErrorIcon = ({ width = '3.6rem', height = '3.6rem', clas
                     <stop offset="1" stopColor="#FFC1C1" />
                 </linearGradient>
             </defs>
+        </svg>
+    );
+};
+
+export const CallContactIcon = ({ width = '4rem', height = '4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 40 40"
+            fill="none"
+        >
+            <rect width="40" height="40" rx="20" fill="#DB4444" />
+            <path
+                d="M18.5542 14.24L15.1712 10.335C14.7812 9.885 14.0662 9.887 13.6132 10.341L10.8312 13.128C10.0032 13.957 9.76623 15.188 10.2452 16.175C13.1069 22.1 17.8853 26.8851 23.8062 29.755C24.7922 30.234 26.0222 29.997 26.8502 29.168L29.6582 26.355C30.1132 25.9 30.1142 25.181 29.6602 24.791L25.7402 21.426C25.3302 21.074 24.6932 21.12 24.2822 21.532L22.9182 22.898C22.8484 22.9712 22.7565 23.0194 22.6566 23.0353C22.5567 23.0512 22.4543 23.0339 22.3652 22.986C20.1357 21.7021 18.2862 19.8502 17.0052 17.619C16.9573 17.5298 16.9399 17.4272 16.9558 17.3272C16.9717 17.2271 17.02 17.135 17.0932 17.065L18.4532 15.704C18.8652 15.29 18.9102 14.65 18.5542 14.239V14.24Z"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    );
+};
+
+export const MailContactIcon = ({ width = '4rem', height = '4rem', className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            className={className}
+            viewBox="0 0 40 40"
+            fill="none"
+        >
+            <rect width="40" height="40" rx="20" fill="#DB4444" />
+            <path
+                d="M10 13L20 20L30 13M10 27H30V13H10V27Z"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
         </svg>
     );
 };

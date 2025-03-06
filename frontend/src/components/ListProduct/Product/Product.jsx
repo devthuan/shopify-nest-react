@@ -10,9 +10,20 @@ import {
 import Button from '~/components/Button/Button';
 const cx = classNames.bind(styles);
 
-const Product = ({ sale, image, name, priceFinal, pricePre, isInWishList, isForYou, priceFrom, priceTo }) => {
+const Product = ({
+    sale,
+    image,
+    name,
+    priceFinal,
+    pricePre,
+    isInWishList,
+    isForYou,
+    priceFrom,
+    priceTo,
+    goToProductDetail,
+}) => {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} onClick={goToProductDetail}>
             <div className={cx('container')}>
                 <div className={cx('top')}>
                     <img className={cx('image')} src={image} />
@@ -37,6 +48,10 @@ const Product = ({ sale, image, name, priceFinal, pricePre, isInWishList, isForY
                                 <span className={cx('heart')}>
                                     <EllipseProductIcon fill={'#fff'} className={cx('ellipse-icon')} />
                                     <HeartProductIcon className={cx('heart-icon')} />
+                                </span>
+                                <span className={cx('eye')}>
+                                    <EllipseProductIcon fill={'#fff'} className={cx('ellipse-icon')} />
+                                    <EyeProductIcon className={cx('eye-icon')} />
                                 </span>
                             </>
                         )}
