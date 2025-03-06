@@ -3,17 +3,52 @@ import styles from './Cart.module.scss';
 import CartTable from './CartTable/CartTable';
 import Button from '~/components/Button/Button';
 import Line from '~/components/Line/Line';
+import { useEffect, useState } from 'react';
+import { getProductsInCartWithLimitAndPage } from '~/services/cartApi';
+import { getVouchersLimitAndPage } from '~/services/voucherApi';
 
 const cx = classNames.bind(styles);
 
 const Cart = () => {
-    const heading = ['Product', 'Price', 'Quantity', 'Subtotal'];
+    const [cart, setCart] = useState({});
+    const [listCart, setListCart] = useState([]);
+    const [voucher, setVoucher] = useState('');
+
+    useEffect(() => {
+        fetchCart();
+    }, []);
+
+    useEffect(() => {
+        fetchVoucher();
+    }, []);
+
+    const fetchCart = async () => {
+        const res = await getProductsInCartWithLimitAndPage();
+        setCart(res);
+        setListCart(res.data);
+    };
+
+    const fetchVoucher = async () => {
+        const res = await getVouchersLimitAndPage();
+    };
+
+    const getSubtotal = () => {
+        let subtotal = 0;
+        listCart.forEach((item) => {
+            subtotal += item.quantity * item.variants.price;
+        });
+        return subtotal;
+    };
+
+    console.log(listCart);
+
+    const handleCheckOutCart = () => {};
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container', 'mt-[80px] mb-[140px]')}>
                 {/* todo: tao component road-map */}
                 <div className={cx('road-map')}>Hehe</div>
-                <CartTable className="mb-[80px]" />
+                <CartTable className="mb-[80px]" listCart={listCart} setListCart={setListCart} />
                 <div className={cx('footer')}>
                     <div className={cx('left')}>
                         <input placeholder="Coupon Code" />
@@ -24,7 +59,7 @@ const Cart = () => {
                         <div className={cx('right-body')}>
                             <div className={cx('body-row')}>
                                 <span>Subtotal:</span>
-                                <span>$1750</span>
+                                <span>${getSubtotal()}</span>
                             </div>
                             <div className="relative mt-[16px] mb-[16px]">
                                 <Line />
@@ -38,13 +73,13 @@ const Cart = () => {
                             </div>
                             <div className={cx('body-row')}>
                                 <span>Total:</span>
-                                <span>$1750</span>
+                                <span>${getSubtotal()}</span>
                             </div>
                             <div className="relative mt-[16px] mb-[16px]">
                                 <Line />
                             </div>
                         </div>
-                        <Button primary className="text-center">
+                        <Button primary className="text-center" onClick={() => handleCheckOutCart()}>
                             Procees to checkout
                         </Button>
                     </div>

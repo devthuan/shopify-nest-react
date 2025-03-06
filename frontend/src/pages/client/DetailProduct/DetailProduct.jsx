@@ -41,7 +41,6 @@ const DetailProduct = () => {
         const res = await getProductById(id);
         if (res) {
             setProduct(res);
-            console.log(res);
         }
     };
 
@@ -181,7 +180,7 @@ const DetailProduct = () => {
             return;
         }
 
-        console.log(colorSelected, sizeSelected, quantity);
+        // console.log(colorSelected, sizeSelected, quantity);
 
         // Tìm variant phù hợp với màu sắc và size
         const selectedVariant = product.variants.find(
@@ -206,8 +205,11 @@ const DetailProduct = () => {
         }
 
         const res = await addProductToCart(selectedVariant.id, quantity);
-        if (res && res.message) {
-            toast.success(res.message);
+
+        if (res && res.status >= 200 && res.status < 300) {
+            toast.success(res.data.message);
+        } else {
+            toast.error(res.data?.message);
         }
     };
 

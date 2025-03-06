@@ -4,6 +4,7 @@ import TopHeader from '~/layouts/components/TopHeader/TopHeader';
 import Header from '~/layouts/components/Header/Header';
 import Footer from '~/layouts/components/Footer/Footer';
 import Line from '~/components/Line/Line';
+import Breadcrumb from '~/components/Breadcrumb/Breadcrumb';
 const cx = classNames.bind(styles);
 const DefaultLayout = ({ children }) => {
     return (
