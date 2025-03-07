@@ -38,6 +38,13 @@ export class VouchersController {
     return plainToInstance(Vouchers, data)
   }
 
+  @Get('code/:code')
+  findOneByCode(@Param('code') code: string) {
+    console.log(code)
+    let data = this.vouchersService.findOneByCode(code);
+    return plainToInstance(Vouchers, data)
+  }
+
   @Get('check/:code')
   checkUseVouchers(@Param('code') voucherCode: string,
     @Req() req: Request,) {

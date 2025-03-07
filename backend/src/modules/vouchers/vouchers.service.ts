@@ -1,14 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateVoucherDto } from './dto/create-voucher.dto';
 import { UpdateVoucherDto } from './dto/update-voucher.dto';
 import { BaseService } from 'src/common/base.service';
-import { Vouchers } from './entities/voucher.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { Accounts } from '../auth/entities/account.entity';
 import { CommonException } from 'src/common/exception';
 import { UseVoucherDto } from './dto/use-voucher-dto';
 import { UseVouchers } from './entities/use-voucher.entity';
+import { Vouchers } from './entities/voucher.entity';
 
 @Injectable()
 export class VouchersService extends BaseService<Vouchers> {
@@ -87,6 +87,27 @@ export class VouchersService extends BaseService<Vouchers> {
       CommonException.handle(error)
     }
   }
+
+  async findOneByCode(code: string): Promise<Vouchers> {
+    try {
+       const entityName = this.vouchersRepository.target instanceof Function 
+        ? this.vouchersRepository.target.name 
+        : this.vouchersRepository.target;
+  
+        const data = await this.vouchersRepository.createQueryBuilder('vouchers')
+          .where('vouchers.code = :code', { code }) // Kiểm tra ID
+          .andWhere('vouchers.deletedAt IS NULL') // Kiểm tra deletedAt là null
+          .getOne();
+  
+        if (!data) {
+          throw new NotFoundException(`${entityName} không tồn tại`);
+        }
+  
+        return data;
+      } catch (error) {
+        CommonException.handle(error)
+      }
+    }
 
   async useVouchers(voucherCode : string, accountId: string): Promise<Vouchers> {
     const queryRunner = this.dataSource.createQueryRunner()
