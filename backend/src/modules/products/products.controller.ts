@@ -33,8 +33,6 @@ export class ProductsController {
     return this.productsService.getProductById(id)
   }
 
- 
-
   @Patch(':id')
   updateProduct(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto){
     return this.productsService.updateProduct(id,updateProductDto)
