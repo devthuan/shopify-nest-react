@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req, UseGuards } from '@nestjs/common';
 import { VouchersService } from './vouchers.service';
 import { CreateVoucherDto } from './dto/create-voucher.dto';
 import { UpdateVoucherDto } from './dto/update-voucher.dto';
 import { plainToInstance } from 'class-transformer';
 import { Vouchers } from './entities/voucher.entity';
 import { UseVoucherDto } from './dto/use-voucher-dto';
+import { AuthGuard } from '@nestjs/passport';
+import { AuthGuardCustom } from '../auth/auth.guard';
 
 @Controller('vouchers')
 export class VouchersController {
@@ -38,6 +40,14 @@ export class VouchersController {
     return plainToInstance(Vouchers, data)
   }
 
+  @Get('code/:code')
+  findOneByCode(@Param('code') code: string) {
+    console.log(code)
+    let data = this.vouchersService.findOneByCode(code);
+    return plainToInstance(Vouchers, data)
+  }
+
+  @UseGuards(AuthGuardCustom)
   @Get('check/:code')
   checkUseVouchers(@Param('code') voucherCode: string,
     @Req() req: Request,) {

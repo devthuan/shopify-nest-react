@@ -1,5 +1,5 @@
 import { BaseEntity } from "src/common/base.entity";
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, OneToMany, Unique } from "typeorm";
 import { UseVouchers } from "./use-voucher.entity";
 import { Bills } from "src/modules/bills/entities/bill.entity";
 

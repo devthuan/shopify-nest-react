@@ -224,24 +224,66 @@ export class BillsService extends BaseService<Bills> {
       }
   }
 
-  async findOne(id: string): Promise<Bills> {
+  async findOne(id: string): Promise<any> {
       try {
         const bill = await this.billsRepository.createQueryBuilder('bills')
         .where('bills.id = :id', { id })
         .andWhere('bills.deletedAt IS NULL')
         .leftJoinAndSelect('bills.payments', 'payments')
         .leftJoinAndSelect('bills.vouchers', 'vouchers')
-        .leftJoinAndSelect('bills.account', 'account')
+        .leftJoinAndSelect('bills.accounts', 'accounts')
         .leftJoinAndSelect('bills.billDetails', 'billDetails')
-        .leftJoinAndSelect('billDetails.productAttributes', 'productAttributes')
-        .leftJoinAndSelect('productAttributes.products', 'products')
-        .leftJoinAndSelect('productAttributes.attributes', 'attributes')
+        .leftJoinAndSelect('billDetails.variants', 'variants')
+        .leftJoinAndSelect('variants.products', 'products')
+        .leftJoinAndSelect('variants.variantAttributeValues', 'variantAttributeValues')
+        .leftJoinAndSelect('variantAttributeValues.attributeValues', 'attributeValues')
+        .leftJoinAndSelect('attributeValues.attributes', 'attributes')
         .leftJoinAndSelect('products.discounts', 'discounts')
         .getOne();
         if(!bill){
           throw new BadRequestException('Bill not found')
         }
-        return bill;
+
+        const formatData = {
+            id: bill.id,
+            createdAt: bill.createdAt,
+            updatedAt: bill.updatedAt,
+            status: bill.status,
+            total: bill.total,
+            totalDiscount: bill.totalDiscount,
+            totalPayment: bill.totalPayment,
+            fullName: bill.fullName,
+            deliverAddress: bill.deliverAddress,
+            deliverPhone: bill.deliverPhone,
+            shippingMethod: bill.shippingMethod,
+            note: bill.note,
+            payments: bill.payments.name,
+            vouchers: bill.vouchers?.name,
+            accounts: bill.accounts.userName || bill.accounts.email,
+            billDetails: bill.billDetails.map(billDetail => { return {
+              id: billDetail.id,
+              quantity: billDetail.quantity,
+              price: billDetail.price,
+              discount: billDetail?.discount,
+              products: {
+                id: billDetail.variants.products.id,
+                name: billDetail.variants.products.name,
+                description: billDetail.variants.products.description,
+                discount: billDetail.variants.products[0]?.discounts.value,
+                variants : [
+                  billDetail.variants.variantAttributeValues.map(attr => {
+                    return {
+                      attributeName: attr.attributeValues.attributes.name,
+                      attributeValue: attr.attributeValues.value
+                    }
+                  })
+                ]
+              }
+            } })
+        }
+
+
+        return formatData;
         
       } catch (error) {
         CommonException.handle(error)

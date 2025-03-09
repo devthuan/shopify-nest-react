@@ -7,8 +7,6 @@ export class BillDetailDto {
     @IsString( {message: 'productVariantId phải là ký tự'} )
     productVariantId: string;
     
-    @IsString({message: 'attributeId phải là ký tự'})
-    attributeId: string;
 
     @IsNumber({}, {message: 'quantity phải là số'})
     @Min(1, {message: 'quantity phải lớn hơn hoặc bằng 1'})

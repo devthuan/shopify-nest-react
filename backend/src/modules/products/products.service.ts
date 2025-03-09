@@ -161,9 +161,8 @@ export class ProductsService extends BaseService<Products> {
   ): Promise<{ total: number;  currentPage: number; totalPage: number; limit : number; data: any[]}>{
     try {
 
-
       // check caching
-      const cacheProducts = await this.redisService.get('products');
+      const cacheProducts = await this.redisService.get(`products_limit=${limit}_page=${page}`);
 
       if (cacheProducts) {
         console.log("data from cache")
@@ -224,8 +223,9 @@ export class ProductsService extends BaseService<Products> {
         
         const response = { total, totalPage, currentPage: +page, limit: +limit, data };
 
+        // save data in cache
         await this.redisService.set(
-          'products',
+          `products_limit=${limit}_page=${page}`,
           JSON.stringify(response),
           60
         )
