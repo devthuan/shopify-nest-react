@@ -15,3 +15,13 @@ export const getVouchersLimitAndPage = async (limit = 10, page = 1) => {
         throw error;
     }
 };
+
+export const getAndCheckVoucherByCode = async (code) => {
+    try {
+        const response = await axios.get(`vouchers/check/${code}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching cart:', error);
+        throw error;
+    }
+};

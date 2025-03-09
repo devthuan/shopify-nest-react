@@ -26,8 +26,8 @@ const Product = ({
         <div className={cx('wrapper')} onClick={goToProductDetail}>
             <div className={cx('container')}>
                 <div className={cx('top')}>
-                    <img className={cx('image')} src={image} />
-                    <span className={cx('sale')}>{sale}</span>
+                    <img className={cx('image')} src={image} alt="product-img" />
+                    {sale && <span className={cx('sale')}>{sale}</span>}
                     <div className={cx('intergrate-icon')}>
                         {isInWishList ? (
                             <>

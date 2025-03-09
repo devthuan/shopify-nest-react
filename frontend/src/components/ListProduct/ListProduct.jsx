@@ -37,6 +37,7 @@ const ListProduct = ({
 
     const fetchDataProduct = async (currentPage) => {
         const res = await getProductByLimitAndPage(ITEMS_PER_PAGE, currentPage);
+        console.log(res.data);
         if (res) {
             // console.log(res);
             handleListProductData(res.data);
@@ -124,7 +125,7 @@ const ListProduct = ({
                     ? listProduct.map((product) => (
                           <Product
                               key={product.id}
-                              image={product.images[0]}
+                              image={product.images[0].urlImages}
                               name={product.name}
                               priceFrom={product.lowestPrice}
                               priceTo={product.highestPrice}

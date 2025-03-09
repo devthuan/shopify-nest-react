@@ -221,17 +221,19 @@ const DetailProduct = () => {
                 <div className={cx('content')}>
                     <div className={cx('left-images')}>
                         <div className={cx('images-select')}>
-                            {listImage.map((image, index) => (
-                                <div
-                                    key={`image-${index}`}
-                                    className={cx('image-select', {
-                                        'image-selected': image === imageSelected,
-                                    })}
-                                    onClick={() => handleSelectImage(image)}
-                                >
-                                    <img src={image} alt="image" />
-                                </div>
-                            ))}
+                            {listImage.map((image, index) => {
+                                return (
+                                    <div
+                                        key={`image-${index}`}
+                                        className={cx('image-select', {
+                                            'image-selected': image === imageSelected,
+                                        })}
+                                        onClick={() => handleSelectImage(image)}
+                                    >
+                                        <img src={image} alt="image" loading="lazy" />
+                                    </div>
+                                );
+                            })}
                         </div>
                         <div className={cx('image-view')}>
                             <img src={imageSelected} alt="image" />
