@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './ListProduct.module.scss';
 import Product from './Product/Product';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, BrowseCategoryIcon, EllipseProductIcon } from '../Icons';
 import BrowseCategory from './BrowseCategory/BrowseCategory';
 import Button from '../Button/Button';
@@ -22,71 +22,43 @@ const ListProduct = ({
     isForYou,
 }) => {
     const navigate = useNavigate();
-    const ITEMS_PER_PAGE = isCateGory ? 6 * rowBrowseCategoryQuantity : 4 * rowQuantity;
-    const [listProduct, setListProduct] = useState([]);
-    const [totalPagesProduct, setTotalPagesProduct] = useState(1);
+    const ITEMS_PER_PAGE = useMemo(
+        () => (isCateGory ? 6 * rowBrowseCategoryQuantity : 4 * rowQuantity),
+        [isCateGory, rowQuantity, rowBrowseCategoryQuantity],
+    );
 
-    const [listBrowseCategory, setListBrowseCategory] = useState([]);
-    const [totalPagesBrowseCategory, setTotalPagesBrowseCategory] = useState(1);
-
+    const [dataList, setDataList] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
-    // Call API
+
+    // Fetch data từ API
+    const fetchData = useCallback(
+        async (page) => {
+            const fetchFunction = isCateGory ? getCategoryByLimitAndPage : getProductByLimitAndPage;
+            const res = await fetchFunction(ITEMS_PER_PAGE, page);
+            if (res) {
+                setDataList(isCateGory ? res.data : res.data.map(handleProductData));
+                setTotalPages(res.totalPage);
+            }
+        },
+        [ITEMS_PER_PAGE, isCateGory],
+    );
+
     useEffect(() => {
-        isCateGory ? fetchDataBrowseCategory(currentPage) : fetchDataProduct(currentPage);
-    }, [currentPage]);
+        fetchData(currentPage);
+    }, [currentPage, fetchData]);
 
-    const fetchDataProduct = async (currentPage) => {
-        const res = await getProductByLimitAndPage(ITEMS_PER_PAGE, currentPage);
-        if (res) {
-            // console.log(res);
-            handleListProductData(res.data);
-            setTotalPagesProduct(res.totalPage);
-        }
-    };
+    const handleProductData = (product) => ({
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        images: product.images,
+        lowestPrice: Math.min(...product.variants.map((v) => v.price)),
+        highestPrice: Math.max(...product.variants.map((v) => v.price)),
+    });
 
-    // Xu li data product
-    const handleListProductData = (listProductRaw) => {
-        const data = listProductRaw.map((product) => handleProductData(product));
-        setListProduct(data);
-    };
-
-    const handleProductData = (product) => {
-        const prices = product.variants.map((variant) => variant.price);
-        return {
-            id: product.id,
-            name: product.name,
-            description: product.description,
-            images: product.images,
-            lowestPrice: Math.min(...prices),
-            highestPrice: Math.max(...prices),
-        };
-    };
-
-    // Xu li data BrowseCategory
-    const fetchDataBrowseCategory = async (currentPage) => {
-        const res = await getCategoryByLimitAndPage(ITEMS_PER_PAGE, currentPage);
-        if (res) {
-            setListBrowseCategory(res.data);
-            setTotalPagesBrowseCategory(res.totalPage);
-        }
-    };
-
-    const handleNextPage = () => {
-        if (isCateGory) {
-            setCurrentPage((prevPage) => (prevPage === totalPagesBrowseCategory ? 1 : prevPage + 1));
-        } else {
-            console.log(totalPagesProduct);
-            setCurrentPage((prevPage) => (prevPage === totalPagesProduct ? 1 : prevPage + 1));
-        }
-    };
-
-    const handlePrevPage = () => {
-        if (isCateGory) setCurrentPage((prevPage) => (prevPage === 1 ? totalPagesBrowseCategory : prevPage - 1));
-        else setCurrentPage((prevPage) => (prevPage === 1 ? totalPagesProduct : prevPage - 1));
-    };
-
-    const handleClickProduct = (productId) => {
-        navigate(`/product/${productId}`);
+    const changePage = (next) => {
+        setCurrentPage((prev) => (next ? (prev === totalPages ? 1 : prev + 1) : prev === 1 ? totalPages : prev - 1));
     };
 
     return (
@@ -98,7 +70,7 @@ const ListProduct = ({
             )}
             {haveChangePage && (
                 <div className={cx('change-wrapper')}>
-                    <div className={cx('change-prev')} onClick={handlePrevPage}>
+                    <div className={cx('change-prev')} onClick={() => changePage(false)}>
                         <EllipseProductIcon
                             fill={'#f5f5f5'}
                             className={cx('ellipse-icon')}
@@ -107,8 +79,7 @@ const ListProduct = ({
                         />
                         <ArrowLeftIcon className={cx('arrow-icon')} />
                     </div>
-
-                    <div className={cx('change-next')} onClick={handleNextPage}>
+                    <div className={cx('change-next')} onClick={() => changePage(true)}>
                         <EllipseProductIcon
                             fill={'#f5f5f5'}
                             className={cx('ellipse-icon')}
@@ -120,21 +91,21 @@ const ListProduct = ({
                 </div>
             )}
             <div className={cx('container')}>
-                {!isCateGory
-                    ? listProduct.map((product) => (
+                {isCateGory
+                    ? dataList.map((category) => (
+                          <BrowseCategory key={category.id} title={category.name} icon={<BrowseCategoryIcon />} />
+                      ))
+                    : dataList.map((product) => (
                           <Product
                               key={product.id}
-                              image={product.images[0]}
+                              image={product.images[0].urlImages}
                               name={product.name}
                               priceFrom={product.lowestPrice}
                               priceTo={product.highestPrice}
                               isInWishList={isInWishList}
                               isForYou={isForYou}
-                              goToProductDetail={() => handleClickProduct(product.id)}
+                              goToProductDetail={() => navigate(`/product/${product.id}`)}
                           />
-                      ))
-                    : listBrowseCategory.map((category) => (
-                          <BrowseCategory key={category.id} title={category.name} icon={<BrowseCategoryIcon />} />
                       ))}
             </div>
         </div>

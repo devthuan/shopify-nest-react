@@ -30,7 +30,61 @@
     justify-content: space-between;
     .left {
         display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         gap: 16px;
+
+        .left-item {
+            display: flex;
+            gap: 16px;
+        }
+
+        .left-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        textarea {
+            display: flex;
+            resize: none;
+            border-radius: 4px;
+            border: 1px solid #000;
+            padding: 16px 0px 16px 24px;
+
+            color: var(--Text2, #000);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        select {
+            display: flex;
+            border-radius: 4px;
+            border: 1px solid #000;
+            padding: 16px 24px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: var(--Text2, #000);
+            background-color: white;
+            appearance: none; // Ẩn mũi tên mặc định
+
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 30px;
+
+            cursor: pointer;
+
+            &:focus {
+                outline: none;
+                border-color: #333;
+            }
+        }
+
         input {
             display: flex;
             padding: 16px 73px 16px 24px;
