@@ -8,9 +8,8 @@ const Button = ({ children, className, green, primary, secondary, small, widthFu
             className={cx('wrapper', className, {
                 small,
             })}
-            onClick={onClick}
         >
-            <button className={cx('container', { green, primary, secondary, small, widthFull })}>
+            <button className={cx('container', { green, primary, secondary, small, widthFull })} onClick={onClick}>
                 {icon}
                 {children}
             </button>

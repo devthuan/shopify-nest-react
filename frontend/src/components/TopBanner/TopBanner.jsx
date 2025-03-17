@@ -41,7 +41,7 @@ const TopBanner = ({ slides }) => {
                             </div>
                         ) : (
                             <div onClick={() => goToSlide(index)}>
-                                <EllipseIcon />
+                                <EllipseIcon fill={'grey'} />
                             </div>
                         )}
                     </div>

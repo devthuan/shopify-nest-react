@@ -98,7 +98,7 @@ const ListProduct = ({
                     : dataList.map((product) => (
                           <Product
                               key={product.id}
-                              image={product.images[0].urlImages}
+                              image={product.images[0]}
                               name={product.name}
                               priceFrom={product.lowestPrice}
                               priceTo={product.highestPrice}

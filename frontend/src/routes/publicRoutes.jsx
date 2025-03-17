@@ -13,7 +13,6 @@ export const publicRoutes = [
     { path: '/login', component: Login, layout: DefaultLayout },
     { path: '/register', component: Register, layout: DefaultLayout },
     { path: '/wishlist', component: WishList, layout: DefaultLayout },
-    { path: '/cart', component: Cart, layout: DefaultLayout },
     { path: '/product/:id', component: DetailProduct, layout: DefaultLayout },
     { path: '/contact', component: Contact, layout: DefaultLayout },
     { path: '/*', component: Page404, layout: null },

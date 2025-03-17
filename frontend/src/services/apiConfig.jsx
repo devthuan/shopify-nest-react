@@ -10,13 +10,13 @@ const api = axios.create({
 
 api.interceptors.request.use(
     async (config) => {
-        // lấy token strong localStorage
-        const token =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1ZTg5MjI5LTdkNzctNDIxYi05NjUzLTRkODZlYzMyYTdkMSIsInVzZXJuYW1lIjoiZGV2dGh1YW4iLCJlbWFpbCI6ImRldnRodWFuMjRAZ21haWwuY29tIiwicm9sZSI6ImNsaWVudCIsImlhdCI6MTc0MDQxNDU4NywiZXhwIjoxNzc3NDEzNTc3fQ.z7iHolWcBGKQSxzBmo2Pqjt9LqQYDtqIgo6OZzJDUPI';
-        // const token = getItemWithExpiration('token') || null;
+        // lấy accessToken strong localStorage
+        // const accessToken =
+        //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1ZTg5MjI5LTdkNzctNDIxYi05NjUzLTRkODZlYzMyYTdkMSIsInVzZXJuYW1lIjoiZGV2dGh1YW4iLCJlbWFpbCI6ImRldnRodWFuMjRAZ21haWwuY29tIiwicm9sZSI6ImNsaWVudCIsImlhdCI6MTc0MDQxNDU4NywiZXhwIjoxNzc3NDEzNTc3fQ.z7iHolWcBGKQSxzBmo2Pqjt9LqQYDtqIgo6OZzJDUPI';
+        const accessToken = getItemWithExpiration('accessToken') || null;
 
-        if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
+        if (accessToken) {
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
         return config;
     },
@@ -24,10 +24,10 @@ api.interceptors.request.use(
         return Promise.reject(error);
     },
     async (config) => {
-        // lấy token strong localStorage
-        const token = getItemWithExpiration('token') || null;
-        if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
+        // lấy accessToken strong localStorage
+        const accessToken = getItemWithExpiration('accessToken') || null;
+        if (accessToken) {
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
         return config;
     },
