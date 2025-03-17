@@ -221,7 +221,7 @@ export class ProductsService extends BaseService<Products> {
           }))
 
         
-        const response = { total, totalPage, currentPage: +page, limit: +limit, data };
+        const response = { total, totalPage, currentPage: +page, limit: +limit, data: formattedData };
 
         // save data in cache
         await this.redisService.set(
