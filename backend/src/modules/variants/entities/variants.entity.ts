@@ -1,5 +1,5 @@
 import { BaseEntity } from "src/common/base.entity";
-import { BillDetails } from "src/modules/bills/entities/bill-detail.entity";
+import { BillDetails } from "../../../modules/bills/entities/bill-detail.entity";
 import { Cart } from "src/modules/carts/entities/cart.entity";
 import { Products } from "src/modules/products/entities/product.entity";
 import { VariantAttributeValues } from "src/modules/variant-attribute-values/entities/variant-attribute-value.entity";
