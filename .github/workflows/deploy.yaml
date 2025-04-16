@@ -1,0 +1,38 @@
+name: Deploy to VPS Ubuntu
+
+on:
+  push:
+    branches: [production]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: SSH and deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd ${{ secrets.VPS_PATH }}
+            git pull origin main
+
+            # Build frontend
+            cd frontend
+            npm install
+            npm run build
+
+            # Build backend
+            cd ../backend
+            npm install
+            npm run build
+
+            # Restart backend (dùng pm2)
+            pm2 restart nest-app || pm2 start dist/main.js --name nest-app
+          EOF
