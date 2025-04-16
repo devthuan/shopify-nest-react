@@ -36,7 +36,6 @@ export class AccountsController {
     return this.accountsService.findOne(id);
 
   }
-  // comment ci/cd
   // @UseGuards(PermissionsGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAccountDto: UpdateAccountDto) {
