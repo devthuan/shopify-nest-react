@@ -83,7 +83,7 @@ export class AuthService extends BaseService<Accounts> {
         device: 'web',
         typeLogin: 'system',
         lastLogin: null,
-        isActive: false,
+        isActive: true,
         role: role 
       });
       await queryRunner.manager.save(newAccount);
@@ -95,12 +95,12 @@ export class AuthService extends BaseService<Accounts> {
        // save otp to redis
       this.redisService.set(createAuthDto.email, otpHash, 3000);
       // send otp to email
-      await this.mailService.sendEmail(
-        createAuthDto.email,
-        'Mã otp xác thực tài khoản',
-        otp.toString(),
-        otp.toString()
-      )
+      // await this.mailService.sendEmail(
+      //   createAuthDto.email,
+      //   'Mã otp xác thực tài khoản',
+      //   otp.toString(),
+      //   otp.toString()
+      // )
 
       await queryRunner.commitTransaction()
       return {
