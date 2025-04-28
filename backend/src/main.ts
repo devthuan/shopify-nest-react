@@ -7,7 +7,12 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1/');
 
-  app.enableCors(); 
+  app.enableCors({
+  origin: '*',  // Cho phép tất cả các domain
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,  // Nếu bạn cần gửi cookie/token
+});
+ 
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
