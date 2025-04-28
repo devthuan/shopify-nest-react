@@ -2,20 +2,21 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { CartIcon, HeartIcon, SearchIcon, UnderLine, UserIcon } from '~/components/Icons';
 import { Link, useNavigate, useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import Button from '~/components/Button/Button';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
-
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const navItems = [
         { name: 'Home', path: '/' },
         { name: 'Shop', path: '/shop' },
         { name: 'Categories', path: '/categories' },
         { name: 'Contact', path: '/contact' },
         { name: 'About', path: '/about' },
-        { name: 'Sign Up', path: '/sign-up' },
     ];
 
     return (
@@ -42,15 +43,28 @@ const Header = () => {
                         </div>
                     </div>
                     <div className={cx('more')}>
-                        <span>
-                            <HeartIcon />
-                        </span>
-                        <span onClick={() => navigate('/cart')}>
-                            <CartIcon />
-                        </span>
-                        <span>
-                            <UserIcon />
-                        </span>
+                        {isAuthenticated ? (
+                            <>
+                                <span>
+                                    <HeartIcon />
+                                </span>
+                                <span onClick={() => navigate('/cart')}>
+                                    <CartIcon />
+                                </span>
+                                <span>
+                                    <UserIcon />
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                <button className={cx('btn-sign-in')} onClick={() => navigate('/login')}>
+                                    Sign in
+                                </button>
+                                <button className={cx('btn-sign-up')} onClick={() => navigate('/register')}>
+                                    Sign up
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
