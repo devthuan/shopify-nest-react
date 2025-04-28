@@ -7,12 +7,24 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1/');
 
+  // Cấu hình CORS chi tiết
   app.enableCors({
-  origin: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-});
- 
+    origin: [
+      'http://localhost:5173',
+      'http://127.0.0.1:5173',
+      // Thêm các domain khác nếu cần
+    ],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-Requested-With',
+      'Accept'
+    ],
+    credentials: true, // Cho phép gửi cookie/token
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  });
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
