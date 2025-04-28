@@ -8,7 +8,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1/');
 
   app.enableCors({
-  origin: ['http://localhost:3000', 'http://localhost:5173'],  // Cho phép tất cả các domain
+  origin: '*',  // Cho phép tất cả các domain
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,  // Nếu bạn cần gửi cookie/token
 });
